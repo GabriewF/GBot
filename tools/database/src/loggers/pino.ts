@@ -24,7 +24,7 @@
  */
 
 import { Logger } from 'typeorm';
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 
 export class PinoLogger implements Logger {
   logQuery(query: string, parameters?: unknown[] | undefined) {

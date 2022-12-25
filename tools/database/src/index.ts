@@ -24,7 +24,7 @@
  */
 
 import 'reflect-metadata';
-import { loadGlobal } from '@gabriewf/environment';
+import { loadGlobal } from '@gbot/environment';
 
 loadGlobal();
 

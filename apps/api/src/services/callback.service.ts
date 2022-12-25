@@ -25,13 +25,13 @@
 
 import { Injectable } from '@nestjs/common';
 
-import { userRepository, shortcutRepository } from '@gabriewf/database';
+import { userRepository, shortcutRepository } from '@gbot/database';
 import {
   getToken,
   generateAuthProvider,
   generateApiClient,
   waitingRegistry,
-} from '@gabriewf/helpers';
+} from '@gbot/helpers';
 
 import { Response } from 'express';
 

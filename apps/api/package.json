@@ -1,5 +1,5 @@
 {
-  "name": "@gabriewf/api",
+  "name": "@gbot/api",
   "version": "0.1.5",
   "type": "commonjs",
   "private": true,
@@ -45,10 +45,10 @@
   },
 
   "dependencies": {
-    "@gabriewf/database": "workspace:*",
-    "@gabriewf/environment": "workspace:*",
-    "@gabriewf/helpers": "workspace:*",
-    "@gabriewf/logging": "workspace:*",
+    "@gbot/database": "workspace:*",
+    "@gbot/environment": "workspace:*",
+    "@gbot/helpers": "workspace:*",
+    "@gbot/logging": "workspace:*",
     "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^9.2.1",
     "@nestjs/platform-express": "^9.2.1",

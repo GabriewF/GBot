@@ -24,7 +24,7 @@
  */
 
 import { Get, Router } from '@discordx/koa';
-import { shortcutRepository } from '@gabriewf/database';
+import { shortcutRepository } from '@gbot/database';
 import type { RouterContext } from '@koa/router';
 
 import { URL } from 'node:url';

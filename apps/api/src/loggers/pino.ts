@@ -24,7 +24,7 @@
  */
 
 import { LoggerService } from '@nestjs/common';
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 
 export class PinoLogger implements LoggerService {
   log(message: string) {

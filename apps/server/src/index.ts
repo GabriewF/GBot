@@ -25,9 +25,9 @@
 
 import { importx } from '@discordx/importer';
 import { Koa } from '@discordx/koa';
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 import { join } from 'node:path';
-import { loadGlobal } from '@gabriewf/environment';
+import { loadGlobal } from '@gbot/environment';
 
 // Load Local Env
 loadGlobal();

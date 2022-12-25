@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { getApiClient } from '@gabriewf/helpers';
+import { getApiClient } from '@gbot/helpers';
 import {
   ApplicationCommandOptionType,
   codeBlock,

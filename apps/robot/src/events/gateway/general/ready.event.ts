@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 import { OAuth2Scopes } from 'discord.js';
 import { ArgsOf, Client, Discord, Once } from 'discordx';
 

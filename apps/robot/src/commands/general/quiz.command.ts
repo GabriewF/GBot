@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { response } from '@gabriewf/helpers';
+import { response } from '@gbot/helpers';
 import {
   ActionRowBuilder,
   ButtonBuilder,

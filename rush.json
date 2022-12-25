@@ -435,7 +435,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/robot",
+      "packageName": "@gbot/robot",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -517,7 +517,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/server",
+      "packageName": "@gbot/server",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -599,7 +599,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/api",
+      "packageName": "@gbot/api",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -681,7 +681,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/helpers",
+      "packageName": "@gbot/helpers",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -763,7 +763,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/environment",
+      "packageName": "@gbot/environment",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -845,7 +845,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/database",
+      "packageName": "@gbot/database",
     
       /**
        * The path to the project folder, relative to the rush.json config file.
@@ -927,7 +927,7 @@
       /**
        * The NPM package name of the project (must match package.json)
        */
-      "packageName": "@gabriewf/logging",
+      "packageName": "@gbot/logging",
     
       /**
        * The path to the project folder, relative to the rush.json config file.

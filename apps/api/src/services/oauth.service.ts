@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { shortcutRepository } from '@gabriewf/database';
+import { shortcutRepository } from '@gbot/database';
 import { Injectable } from '@nestjs/common';
 
 import { Response } from 'express';

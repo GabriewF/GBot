@@ -1,5 +1,5 @@
 {
-  "name": "@gabriewf/database",
+  "name": "@gbot/database",
   "version": "0.1.5",
   "type": "commonjs",
   "private": true,
@@ -30,8 +30,8 @@
   },
 
   "dependencies": {
-    "@gabriewf/environment": "workspace:*",
-    "@gabriewf/logging": "workspace:*",
+    "@gbot/environment": "workspace:*",
+    "@gbot/logging": "workspace:*",
     "dotenv": "^16.0.3",
     "pg": "^8.8.0",
     "pg-native": "^3.0.1",

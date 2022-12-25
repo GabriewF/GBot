@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 pino.info('Foi?');
 
 import { NestFactory } from '@nestjs/core';
@@ -31,7 +31,7 @@ import {
   ExpressAdapter,
   NestExpressApplication,
 } from '@nestjs/platform-express';
-import { loadGlobal } from '@gabriewf/environment';
+import { loadGlobal } from '@gbot/environment';
 
 import { AppModule } from './modules';
 import { PinoLogger } from './loggers';

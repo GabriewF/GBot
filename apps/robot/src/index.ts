@@ -27,12 +27,12 @@
 import { ActivityType } from 'discord.js';
 
 // Packages
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 import { IntentsBitField, Partials } from 'discord.js';
 import { Client } from 'discordx';
 // import { importx } from '@discordx/importer';
 // import { dirname } from 'node:path';
-import { loadGlobal } from '@gabriewf/environment';
+import { loadGlobal } from '@gbot/environment';
 
 export class Main {
   private static client: Client;

@@ -23,8 +23,8 @@
  *  SOFTWARE.
  */
 
-import { discordRepository, shortcutRepository } from '@gabriewf/database';
-import { waitingRegistry } from '@gabriewf/helpers';
+import { discordRepository, shortcutRepository } from '@gbot/database';
+import { waitingRegistry } from '@gbot/helpers';
 import {
   ActionRowBuilder,
   ButtonBuilder,

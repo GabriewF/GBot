@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { userRepository } from '@gabriewf/database';
+import { userRepository } from '@gbot/database';
 import { generateAuthProvider } from '../auth/customAuth';
 import { generateApiClient } from './customApi';
 

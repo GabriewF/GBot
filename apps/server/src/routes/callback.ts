@@ -24,7 +24,7 @@
  */
 
 import { Get, Router } from '@discordx/koa';
-import { shortcutRepository, userRepository } from '@gabriewf/database';
+import { shortcutRepository, userRepository } from '@gbot/database';
 import type { RouterContext } from '@koa/router';
 
 import {
@@ -32,7 +32,7 @@ import {
   generateAuthProvider,
   getToken,
   waitingRegistry,
-} from '@gabriewf/helpers';
+} from '@gbot/helpers';
 
 @Router()
 export abstract class Callback {

@@ -1,5 +1,5 @@
 {
-  "name": "@gabriewf/robot",
+  "name": "@gbot/robot",
   "version": "0.1.5",
   "type": "commonjs",
   "private": true,
@@ -38,10 +38,10 @@
 
   "dependencies": {
     "@discordx/importer": "^1.1.10",
-    "@gabriewf/database": "workspace:*",
-    "@gabriewf/environment": "workspace:*",
-    "@gabriewf/helpers": "workspace:*",
-    "@gabriewf/logging": "workspace:*",
+    "@gbot/database": "workspace:*",
+    "@gbot/environment": "workspace:*",
+    "@gbot/helpers": "workspace:*",
+    "@gbot/logging": "workspace:*",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.7.1",
     "discordx": "^11.5.2",

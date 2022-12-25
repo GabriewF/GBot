@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { twitchRepository } from '@gabriewf/database';
+import { twitchRepository } from '@gbot/database';
 import {
   AccessToken,
   RefreshConfig,

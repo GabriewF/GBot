@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { pino } from '@gabriewf/logging';
+import { pino } from '@gbot/logging';
 import { ArgsOf, Client, Discord, On } from 'discordx';
 
 @Discord()

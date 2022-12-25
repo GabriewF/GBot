@@ -1,5 +1,5 @@
 {
-  "name": "@gabriewf/helpers",
+  "name": "@gbot/helpers",
   "version": "0.1.5",
   "type": "commonjs",
   "private": true,
@@ -31,7 +31,7 @@
   },
 
   "dependencies": {
-    "@gabriewf/database": "workspace:*",
+    "@gbot/database": "workspace:*",
     "@twurple/api": "^5.2.7",
     "@twurple/auth": "^5.2.7",
     "@twurple/eventsub": "^5.2.7",

@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-import { discordRepository } from '@gabriewf/database';
+import { discordRepository } from '@gbot/database';
 import { generateAuthProvider } from '../auth/customAuth';
 
 export const getAuthProvider = async (userId: string) => {
