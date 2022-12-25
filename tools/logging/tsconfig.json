@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+
+    // Directory's
+    "declarationDir": "dist/",
+    "outDir": "dist/",
+    "rootDir": "src/",
+
+    // Development
+    "inlineSourceMap": true,
+    "inlineSources": true,
+
+    // Decorators
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    // Linting
+    "strict": true,
+    "alwaysStrict": false,
+
+    // Typings
+    "declaration": true,
+    "declarationMap": false,
+
+    // Modules and Libs
+    "moduleResolution": "Node",
+    "moduleDetection": "auto",
+    "importHelpers": true,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+
+    // Clean Code
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+    "resolveJsonModule": true,
+
+    // Other
+    "newLine": "lf",
+    "noEmitOnError": false,
+    "charset": "UTF-8",
+    "downlevelIteration": false,
+    "composite": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true
+  },
+  "exclude": ["node_modules/", "dist/"],
+  "include": ["src/"],
+  "buildOptions": { "incremental": true }
+}
