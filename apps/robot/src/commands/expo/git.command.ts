@@ -48,36 +48,7 @@ export abstract class Git {
     },
   })
   @SlashGroup('expo')
-  async Handle(
-    // @SlashOption({
-    //   name: 'lang',
-    //   description: 'What\'s is your programming language?',
-
-    //   descriptionLocalizations: {
-    //     'pt-BR': 'Qual a sua linguagem de programação?'
-    //   },
-
-    //   required: true,
-
-    //   autocomplete: (interaction: AutocompleteInteraction) => {
-    //     interaction.respond([
-    //       {
-    //         name: 'Python',
-    //         value: 'python'
-    //       },
-    //       {
-    //         name: 'JavaScript',
-    //         value: 'javascript'
-    //       }
-    //     ])
-    //   },
-
-    //   type: ApplicationCommandOptionType.String
-    // })
-    // lang: string,
-
-    command: CommandInteraction,
-  ) {
+  async Handle(command: CommandInteraction) {
     const modal = new ModalBuilder()
       .setTitle('Git do Paraguai!')
       .setCustomId('gitInput');
@@ -122,10 +93,6 @@ export abstract class Git {
     const gitChannel = <TextChannel>(
       gitGuild.channels.cache.get(String(process.env['GIT_CHANNEL']))
     );
-
-    // const embed = new EmbedBuilder()
-    //   .setColor('Random')
-    //   .setDescription(`\`\`\`${lang}${code}\`\`\``)
 
     await gitChannel.send({
       content: `\`\`\`${lang}${code}\`\`\``,
