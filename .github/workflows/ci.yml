@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.commits[0].message, '[ci-skip]')"
+    steps:
+      # Checkout
+      - uses: actions/checkout@v3
+      
+      # Configure GIT
+      - name: Git config user
+        run: |
+          git config --global user.email "no-reply@github.com"
+          git config --local user.name "GitHub Actions"
+
+      # Setup Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      # Verify Change Logs
+      - name: Verify Change Logs
+        run: node common/scripts/install-run-rush.js change --verify
+      
+      # Rush Install
+      - name: Rush Install
+        run: node common/scripts/install-run-rush.js install
+      
+      # Rush Rebuild
+      - name: Rush rebuild
+        run: node common/scripts/install-run-rush.js rebuild --verbose
