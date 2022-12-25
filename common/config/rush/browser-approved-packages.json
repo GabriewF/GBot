@@ -31,23 +31,23 @@
       "allowedCategories": [ "production" ]
     },
     {
-      "name": "@gabriewf/database",
+      "name": "@gbot/database",
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "@gabriewf/environment",
+      "name": "@gbot/environment",
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "@gabriewf/esbuild",
+      "name": "@gbot/esbuild",
       "allowedCategories": [ "tools" ]
     },
     {
-      "name": "@gabriewf/helpers",
+      "name": "@gbot/helpers",
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "@gabriewf/logging",
+      "name": "@gbot/logging",
       "allowedCategories": [ "production", "tools" ]
     },
     {

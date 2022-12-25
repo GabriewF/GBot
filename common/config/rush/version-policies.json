@@ -51,7 +51,7 @@
      * If this field is omitted, then a separate CHANGELOG.md file will be maintained for each
      * package in the set.
      */
-    "mainProject": "@gabriewf/robot",
+    "mainProject": "@gbot/robot",
   
     /**
      * (Required) Indicates the kind of version policy being defined ("lockStepVersion" or "individualVersion").
