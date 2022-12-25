@@ -90,7 +90,7 @@ export class Main {
 
     // Let's start the bot
     if (!process.env['DISCORD_TOKEN']) {
-      throw Error('Could not find BOT_TOKEN in your environment');
+      throw Error('Could not find DISCORD_TOKEN in your environment');
     }
 
     // Log in with your bot token
