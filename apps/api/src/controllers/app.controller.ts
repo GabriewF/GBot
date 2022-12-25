@@ -32,10 +32,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  async GetIndex(
+  GetIndex(
     @Res({ passthrough: true })
     res: Response,
   ) {
-    return await this.appService.Fallback(res);
+    return this.appService.Fallback(res);
   }
 }

@@ -35,10 +35,10 @@ export class CompletedController {
   ) {}
 
   @Get()
-  async GetCompleted(
+  GetCompleted(
     @Res({ passthrough: true })
     res: Response,
   ) {
-    return await this.oAuthService.GetCompleted(res);
+    return this.oAuthService.GetCompleted(res);
   }
 }
