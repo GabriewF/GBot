@@ -36,25 +36,33 @@ import { loadGlobal } from '@gabriewf/environment';
 import { AppModule } from './modules';
 import { PinoLogger } from './loggers';
 
-export const start = async () => {
-  loadGlobal();
+export class Main {
+  private static app: NestExpressApplication;
 
-  const app = await NestFactory.create<NestExpressApplication>(
-    // App Module
-    AppModule,
+  static get App(): NestExpressApplication {
+    return this.app;
+  }
 
-    // Adapter
-    new ExpressAdapter(),
+  static async start() {
+    loadGlobal();
 
-    // Options
-    { logger: new PinoLogger() },
-  );
+    const app = await NestFactory.create<NestExpressApplication>(
+      // App Module
+      AppModule,
 
-  await app.listen(80);
-};
+      // Adapter
+      new ExpressAdapter(),
+
+      // Options
+      { logger: new PinoLogger() },
+    );
+
+    await app.listen(80);
+  }
+}
 
 // Load Server
-start();
+Main.start();
 
 export * from './controllers';
 export * from './modules';
