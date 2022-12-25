@@ -29,10 +29,7 @@ import { CompletedService } from '../services';
 
 @Controller('completed')
 export class CompletedController {
-  constructor(
-    // private readonly prisma: PrismaService,
-    private readonly oAuthService: CompletedService,
-  ) {}
+  constructor(private readonly oAuthService: CompletedService) {}
 
   @Get()
   GetCompleted(

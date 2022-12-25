@@ -29,10 +29,7 @@ import { CallbackService } from '../services';
 
 @Controller('callback')
 export class CallbackController {
-  constructor(
-    // private readonly prisma: PrismaService,
-    private readonly callbackService: CallbackService,
-  ) {}
+  constructor(private readonly callbackService: CallbackService) {}
 
   @Get()
   async GetCallback(

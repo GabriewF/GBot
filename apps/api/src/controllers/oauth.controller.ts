@@ -29,10 +29,7 @@ import { OauthService } from '../services';
 
 @Controller('oauth')
 export class OauthController {
-  constructor(
-    // private readonly prisma: PrismaService,
-    private readonly oAuthService: OauthService,
-  ) {}
+  constructor(private readonly oAuthService: OauthService) {}
 
   @Get()
   async GetOauth(
