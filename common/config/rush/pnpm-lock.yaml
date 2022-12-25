@@ -7,10 +7,10 @@ importers:
 
   ../../apps/api:
     specifiers:
-      '@gabriewf/database': workspace:*
-      '@gabriewf/environment': workspace:*
-      '@gabriewf/helpers': workspace:*
-      '@gabriewf/logging': workspace:*
+      '@gbot/database': workspace:*
+      '@gbot/environment': workspace:*
+      '@gbot/helpers': workspace:*
+      '@gbot/logging': workspace:*
       '@nestjs/cli': ^9.1.5
       '@nestjs/common': ^9.2.1
       '@nestjs/core': ^9.2.1
@@ -37,10 +37,10 @@ importers:
       tslib: ^2.4.1
       typescript: ^4.9.4
     dependencies:
-      '@gabriewf/database': link:../../tools/database
-      '@gabriewf/environment': link:../../tools/environment
-      '@gabriewf/helpers': link:../../tools/helpers
-      '@gabriewf/logging': link:../../tools/logging
+      '@gbot/database': link:../../tools/database
+      '@gbot/environment': link:../../tools/environment
+      '@gbot/helpers': link:../../tools/helpers
+      '@gbot/logging': link:../../tools/logging
       '@nestjs/common': 9.2.1_mnr6j2del53muneqly5h4y27ai
       '@nestjs/core': 9.2.1_e6la6qvsclaae2becwjnmfvsuq
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
@@ -71,10 +71,10 @@ importers:
   ../../apps/robot:
     specifiers:
       '@discordx/importer': ^1.1.10
-      '@gabriewf/database': workspace:*
-      '@gabriewf/environment': workspace:*
-      '@gabriewf/helpers': workspace:*
-      '@gabriewf/logging': workspace:*
+      '@gbot/database': workspace:*
+      '@gbot/environment': workspace:*
+      '@gbot/helpers': workspace:*
+      '@gbot/logging': workspace:*
       '@rushstack/heft': ^0.49.0
       '@types/node': ^18.11.17
       '@typescript-eslint/eslint-plugin': ^5.47.0
@@ -97,10 +97,10 @@ importers:
       zlib-sync: ^0.1.7
     dependencies:
       '@discordx/importer': 1.1.10
-      '@gabriewf/database': link:../../tools/database
-      '@gabriewf/environment': link:../../tools/environment
-      '@gabriewf/helpers': link:../../tools/helpers
-      '@gabriewf/logging': link:../../tools/logging
+      '@gbot/database': link:../../tools/database
+      '@gbot/environment': link:../../tools/environment
+      '@gbot/helpers': link:../../tools/helpers
+      '@gbot/logging': link:../../tools/logging
       bufferutil: 4.0.7
       discord.js: 14.7.1_3cxu5zja4e2r5wmvge7mdcljwq
       discordx: 11.5.2_discord.js@14.7.1
@@ -127,10 +127,10 @@ importers:
     specifiers:
       '@discordx/importer': ^1.1.10
       '@discordx/koa': ^1.1.2
-      '@gabriewf/database': workspace:*
-      '@gabriewf/environment': workspace:*
-      '@gabriewf/helpers': workspace:*
-      '@gabriewf/logging': workspace:*
+      '@gbot/database': workspace:*
+      '@gbot/environment': workspace:*
+      '@gbot/helpers': workspace:*
+      '@gbot/logging': workspace:*
       '@koa/router': ^12.0.0
       '@rushstack/heft': ^0.49.0
       '@types/koa': ^2.13.5
@@ -151,10 +151,10 @@ importers:
     dependencies:
       '@discordx/importer': 1.1.10
       '@discordx/koa': 1.1.2_yxhabiq6h2kgt7tx26fpoa3zoy
-      '@gabriewf/database': link:../../tools/database
-      '@gabriewf/environment': link:../../tools/environment
-      '@gabriewf/helpers': link:../../tools/helpers
-      '@gabriewf/logging': link:../../tools/logging
+      '@gbot/database': link:../../tools/database
+      '@gbot/environment': link:../../tools/environment
+      '@gbot/helpers': link:../../tools/helpers
+      '@gbot/logging': link:../../tools/logging
       '@koa/router': 12.0.0
       dotenv: 16.0.3
       koa: 2.14.1
@@ -176,8 +176,8 @@ importers:
 
   ../../tools/database:
     specifiers:
-      '@gabriewf/environment': workspace:*
-      '@gabriewf/logging': workspace:*
+      '@gbot/environment': workspace:*
+      '@gbot/logging': workspace:*
       '@rushstack/heft': ^0.49.0
       '@types/node': ^18.11.17
       '@typescript-eslint/eslint-plugin': ^5.47.0
@@ -194,8 +194,8 @@ importers:
       typeorm: ^0.3.11
       typescript: ^4.9.4
     dependencies:
-      '@gabriewf/environment': link:../environment
-      '@gabriewf/logging': link:../logging
+      '@gbot/environment': link:../environment
+      '@gbot/logging': link:../logging
       dotenv: 16.0.3
       pg: 8.8.0_pg-native@3.0.1
       pg-native: 3.0.1
@@ -242,7 +242,7 @@ importers:
 
   ../../tools/helpers:
     specifiers:
-      '@gabriewf/database': workspace:*
+      '@gbot/database': workspace:*
       '@rushstack/heft': ^0.49.0
       '@twurple/api': ^5.2.7
       '@twurple/auth': ^5.2.7
@@ -261,7 +261,7 @@ importers:
       tslib: ^2.4.1
       typescript: ^4.9.4
     dependencies:
-      '@gabriewf/database': link:../database
+      '@gbot/database': link:../database
       '@twurple/api': 5.2.7_@twurple+auth@5.2.7
       '@twurple/auth': 5.2.7
       '@twurple/eventsub': 5.2.7_@twurple+api@5.2.7
