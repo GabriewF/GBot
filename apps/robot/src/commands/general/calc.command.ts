@@ -23,13 +23,7 @@
  *  SOFTWARE.
  */
 
-import {
-  ApplicationCommandOptionType,
-  codeBlock,
-  CommandInteraction,
-  EmbedBuilder,
-  Locale,
-} from 'discord.js';
+import { CommandInteraction, EmbedBuilder, Locale } from 'discord.js';
 import { Discord, Slash, SlashOption } from 'discordx';
 import { evaluate } from 'mathjs';
 import { CalcLang } from '@gbot/meta';
