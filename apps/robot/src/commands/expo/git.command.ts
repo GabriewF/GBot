@@ -80,6 +80,8 @@ export abstract class Git {
     modal.addComponents(langSelect, codeSelect);
 
     await command.showModal(modal);
+
+    return;
   }
 
   @ModalComponent({ id: 'gitInput' })
@@ -102,5 +104,7 @@ export abstract class Git {
     pino.debug(code);
 
     await interaction.reply('Certin');
+
+    return;
   }
 }

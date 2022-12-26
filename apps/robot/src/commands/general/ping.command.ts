@@ -23,64 +23,73 @@
  *  SOFTWARE.
  */
 
-import { codeBlock, CommandInteraction, EmbedBuilder } from 'discord.js';
+import { CommandInteraction, EmbedBuilder, Locale } from 'discord.js';
+import { PingLang } from '@gbot/meta';
 import { Discord, Slash } from 'discordx';
 
 @Discord()
 export abstract class Ping {
   @Slash({
     // Slash Info
-    name: 'ping',
-    description: "Return with a Pong if it's working!",
-    dmPermission: true,
+    name: PingLang().info.name,
+    description: PingLang().info.description,
+    dmPermission: PingLang().info.dmPermission,
 
     // Name Localization
     nameLocalizations: {
-      'pt-BR': 'latência',
+      'pt-BR': PingLang(Locale.PortugueseBR).info.name,
+      'en-US': PingLang(Locale.EnglishUS).info.name,
     },
 
     // Description Localization
     descriptionLocalizations: {
-      'pt-BR': 'Retorno com um Pong se estiver funcionando!',
+      'pt-BR': PingLang(Locale.PortugueseBR).info.description,
+      'en-US': PingLang(Locale.EnglishUS).info.description,
     },
   })
   async Handle(command: CommandInteraction) {
+    const loc = PingLang(command.locale);
+
     await command.deferReply({
       ephemeral: false,
       fetchReply: true,
     });
 
+    const successEmbedLoc = loc.strings.successEmbed;
+
     // Embed of the message
-    const embed = new EmbedBuilder()
-      .setTitle('Latência')
-      .setColor('Random')
+    const successEmbed = new EmbedBuilder()
+      .setTitle(successEmbedLoc.title)
+      .setColor(successEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${command.user.tag}`,
-        iconURL: String(command.user.avatarURL()),
+        text: successEmbedLoc.footer.text(command.user.tag),
+        iconURL: successEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
       .setTimestamp();
 
     // Get Ping
-    const gatewayPing = `${Math.round(command.client.ws.ping)}ms`;
+    const gatewayPing = loc.strings.gatewayPing(command.client.ws.ping);
 
     // Add the Gateway Ping
-    embed.addFields({
-      name: ':stopwatch: Latência do Gateway',
-      value: codeBlock(gatewayPing),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields[0].name,
+      value: successEmbedLoc.fields[0].value(gatewayPing),
     });
 
-    const apiPing = `${Math.abs(Date.now() - command.createdTimestamp)}ms`;
+    const apiPing = loc.strings.apiPing(command.createdTimestamp);
 
     // Add the API Ping
-    embed.addFields({
-      name: ':zap: Latência da API',
-      value: codeBlock(apiPing),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields[1].name,
+      value: successEmbedLoc.fields[1].value(apiPing),
     });
 
     // Return the embed
-    await command.editReply({
-      content: `<@${command.user.id}> *Pong! :ping_pong:*`,
-      embeds: [embed],
+    await command.followUp({
+      content: loc.strings.content(command.user.id),
+      embeds: [successEmbed],
     });
+
+    return;
   }
 }

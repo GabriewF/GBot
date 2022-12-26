@@ -23,7 +23,6 @@
  *  SOFTWARE.
  */
 
-import { pino } from '@gbot/logging';
 import { ArgsOf, Client, Discord, On } from 'discordx';
 
 @Discord()
@@ -31,11 +30,6 @@ export abstract class MessageReactionAdd {
   @On({ event: 'messageReactionAdd' })
   async Handle([reaction, user]: ArgsOf<'messageReactionAdd'>, client: Client) {
     // Execute reaction
-    try {
-      await client.executeReaction(reaction, user);
-      client.executeInteraction;
-    } catch (err) {
-      pino.error('Error when reaction...');
-    }
+    await client.executeReaction(reaction, user);
   }
 }

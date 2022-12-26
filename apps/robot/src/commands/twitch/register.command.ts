@@ -61,6 +61,7 @@ export abstract class Register {
   async Handle(command: CommandInteraction) {
     await command.deferReply({
       ephemeral: true,
+      fetchReply: true,
     });
 
     slashCommand = command;
@@ -124,10 +125,12 @@ export abstract class Register {
       type: ComponentType.ActionRow,
     });
 
-    await command.editReply({
+    await command.followUp({
       embeds: [embed],
       components: [buttonRow],
     });
+
+    return;
   }
 
   // Button component
@@ -261,7 +264,9 @@ export abstract class Register {
         embeds: [embedRegisterLog],
       });
 
-      return clearInterval(interval);
+      clearInterval(interval);
+
+      return;
     }, 1000);
   }
 }

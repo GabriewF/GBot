@@ -71,6 +71,7 @@ export abstract class SetAvatar {
 
     await command.deferReply({
       ephemeral: true,
+      fetchReply: true,
     });
 
     client.user.setAvatar(avatar.url);
@@ -86,9 +87,11 @@ export abstract class SetAvatar {
       })
       .setTimestamp();
 
-    await command.editReply({
+    await command.followUp({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });
+
+    return;
   }
 }

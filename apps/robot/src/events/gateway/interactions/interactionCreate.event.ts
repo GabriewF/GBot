@@ -29,17 +29,7 @@ import { ArgsOf, Client, Discord, On } from 'discordx';
 export abstract class InteractionCreate {
   @On({ event: 'interactionCreate' })
   async Handle([interaction]: ArgsOf<'interactionCreate'>, client: Client) {
-    // Execute interaction
-    try {
-      await client.executeInteraction(interaction);
-    } catch (err) {
-      // Command
-      if (interaction.isCommand()) {
-        await interaction.reply({
-          content: `@<${interaction.user.id}> Erro ao executar esse comando...`,
-          ephemeral: true,
-        });
-      }
-    }
+    // Execute interactio
+    await client.executeInteraction(interaction);
   }
 }

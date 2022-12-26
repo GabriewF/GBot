@@ -28,88 +28,110 @@ import {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonInteraction,
-  ButtonStyle,
   CommandInteraction,
   EmbedBuilder,
+  Locale,
 } from 'discord.js';
 import { ButtonComponent, Discord, Slash } from 'discordx';
+import { QuizLang } from '@gbot/meta';
 
 @Discord()
 export abstract class Quiz {
   @Slash({
-    name: 'quiz',
-    description: 'Make an Quiz!',
-    dmPermission: true,
+    name: QuizLang().info.name,
+    description: QuizLang().info.description,
+    dmPermission: QuizLang().info.dmPermission,
 
     nameLocalizations: {
-      'pt-BR': 'questionário',
+      'pt-BR': QuizLang(Locale.PortugueseBR).info.name,
+      'en-US': QuizLang(Locale.EnglishUS).info.name,
     },
 
     descriptionLocalizations: {
-      'pt-BR': 'Faça um questionário!',
+      'pt-BR': QuizLang(Locale.PortugueseBR).info.description,
+      'en-US': QuizLang(Locale.EnglishUS).info.description,
     },
   })
   async Handle(command: CommandInteraction) {
+    const loc = QuizLang(command.locale).query.query01;
+
     await command.deferReply({
       ephemeral: true,
       fetchReply: true,
     });
 
-    const embed = new EmbedBuilder()
-      .setTitle('Pergunta 01')
-      .setDescription('Você gosta de Pão com queijo?')
-      .setColor('Random')
+    const questionEmbedLoc = loc.embeds.questionEmbed;
+
+    const questionEmbed = new EmbedBuilder()
+      .setTitle(questionEmbedLoc.title)
+      .setDescription(questionEmbedLoc.description)
+      .setColor(questionEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${command.user.tag}`,
-        iconURL: String(command.user.avatarURL()),
+        text: questionEmbedLoc.footer.text(command.user.tag),
+        iconURL: questionEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
       .setTimestamp();
 
+    const yesButtonLoc = loc.buttons.yesButton;
+
     const yesButton = new ButtonBuilder()
-      .setLabel('Sim!')
-      .setCustomId('Query01_Response01')
-      .setStyle(ButtonStyle.Success);
+      .setLabel(yesButtonLoc.label)
+      .setCustomId(yesButtonLoc.customId)
+      .setStyle(yesButtonLoc.style);
+
+    const noButtonLoc = loc.buttons.noButton;
 
     const noButton = new ButtonBuilder()
-      .setLabel('Não!')
-      .setCustomId('Query01_Response02')
-      .setStyle(ButtonStyle.Danger);
+      .setLabel(noButtonLoc.label)
+      .setCustomId(noButtonLoc.customId)
+      .setStyle(noButtonLoc.style);
 
     const buttonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
       yesButton,
       noButton,
     );
 
-    await command.editReply({
-      embeds: [embed],
+    await command.followUp({
+      embeds: [questionEmbed],
       components: [buttonRow],
     });
+
+    return;
   }
 
   // First Question
   @ButtonComponent({ id: 'Query01_Response01' })
   async Query01_Response01(interaction: ButtonInteraction) {
+    const loc = QuizLang(interaction.locale).query.query02;
     response.set('Query01', true);
 
-    const embed = new EmbedBuilder()
-      .setTitle('Pergunta 02')
-      .setDescription('Você gosta de Pão com ovo?')
-      .setColor('Random')
+    const questionEmbedLoc = loc.embeds.questionEmbed;
+
+    const questionEmbed = new EmbedBuilder()
+      .setTitle(questionEmbedLoc.title)
+      .setDescription(questionEmbedLoc.description)
+      .setColor(questionEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${interaction.user.tag}`,
-        iconURL: String(interaction.user.avatarURL()),
+        text: questionEmbedLoc.footer.text(interaction.user.tag),
+        iconURL: questionEmbedLoc.footer.icon(
+          String(interaction.user.avatarURL()),
+        ),
       })
       .setTimestamp();
 
+    const yesButtonLoc = loc.buttons.yesButton;
+
     const yesButton = new ButtonBuilder()
-      .setLabel('Sim!')
-      .setCustomId('Query02_Response01')
-      .setStyle(ButtonStyle.Success);
+      .setLabel(yesButtonLoc.label)
+      .setCustomId(yesButtonLoc.customId)
+      .setStyle(yesButtonLoc.style);
+
+    const noButtonLoc = loc.buttons.noButton;
 
     const noButton = new ButtonBuilder()
-      .setLabel('Não!')
-      .setCustomId('Query02_Response02')
-      .setStyle(ButtonStyle.Danger);
+      .setLabel(noButtonLoc.label)
+      .setCustomId(noButtonLoc.customId)
+      .setStyle(noButtonLoc.style);
 
     const buttonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
       yesButton,
@@ -117,34 +139,45 @@ export abstract class Quiz {
     );
 
     await interaction.update({
-      embeds: [embed],
+      embeds: [questionEmbed],
       components: [buttonRow],
     });
+
+    return;
   }
 
   @ButtonComponent({ id: 'Query01_Response02' })
   async Query01_Response02(interaction: ButtonInteraction) {
+    const loc = QuizLang(interaction.locale).query.query02;
     response.set('Query01', false);
 
-    const embed = new EmbedBuilder()
-      .setTitle('Pergunta 02')
-      .setDescription('Você gosta de Pão com ovo?')
-      .setColor('Random')
+    const questionEmbedLoc = loc.embeds.questionEmbed;
+
+    const questionEmbed = new EmbedBuilder()
+      .setTitle(questionEmbedLoc.title)
+      .setDescription(questionEmbedLoc.description)
+      .setColor(questionEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${interaction.user.tag}`,
-        iconURL: String(interaction.user.avatarURL()),
+        text: questionEmbedLoc.footer.text(interaction.user.tag),
+        iconURL: questionEmbedLoc.footer.icon(
+          String(interaction.user.avatarURL()),
+        ),
       })
       .setTimestamp();
 
+    const yesButtonLoc = loc.buttons.yesButton;
+
     const yesButton = new ButtonBuilder()
-      .setLabel('Sim!')
-      .setCustomId('Query02_Response01')
-      .setStyle(ButtonStyle.Success);
+      .setLabel(yesButtonLoc.label)
+      .setCustomId(yesButtonLoc.customId)
+      .setStyle(yesButtonLoc.style);
+
+    const noButtonLoc = loc.buttons.noButton;
 
     const noButton = new ButtonBuilder()
-      .setLabel('Não!')
-      .setCustomId('Query02_Response02')
-      .setStyle(ButtonStyle.Danger);
+      .setLabel(noButtonLoc.label)
+      .setCustomId(noButtonLoc.customId)
+      .setStyle(noButtonLoc.style);
 
     const buttonRow = new ActionRowBuilder<ButtonBuilder>().addComponents(
       yesButton,
@@ -152,9 +185,11 @@ export abstract class Quiz {
     );
 
     await interaction.update({
-      embeds: [embed],
+      embeds: [questionEmbed],
       components: [buttonRow],
     });
+
+    return;
   }
 
   // Second Question
@@ -162,29 +197,40 @@ export abstract class Quiz {
   async Query02_Response01(interaction: ButtonInteraction) {
     response.set('Question02', true);
     this.Finalize(interaction);
+
+    return;
   }
 
   @ButtonComponent({ id: 'Query02_Response02' })
   async Query02_Response02(interaction: ButtonInteraction) {
     response.set('Question02', false);
     this.Finalize(interaction);
+
+    return;
   }
 
   @ButtonComponent({ id: 'Finalize' })
   async Finalize(interaction: ButtonInteraction) {
-    const embed = new EmbedBuilder()
-      .setTitle('Terminado!')
-      .setDescription('Obrigado por participar!')
-      .setColor('Random')
+    const loc = QuizLang(interaction.locale).query.finalize;
+    const finalizeEmbedLoc = loc.embeds.finalEmbed;
+
+    const finalizeEmbed = new EmbedBuilder()
+      .setTitle(finalizeEmbedLoc.title)
+      .setDescription(finalizeEmbedLoc.description)
+      .setColor(finalizeEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${interaction.user.tag}`,
-        iconURL: String(interaction.user.avatarURL()),
+        text: finalizeEmbedLoc.footer.text(interaction.user.tag),
+        iconURL: finalizeEmbedLoc.footer.icon(
+          String(interaction.user.avatarURL()),
+        ),
       })
       .setTimestamp();
 
     await interaction.update({
-      embeds: [embed],
+      embeds: [finalizeEmbed],
       components: [],
     });
+
+    return;
   }
 }

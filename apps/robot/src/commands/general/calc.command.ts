@@ -28,133 +28,149 @@ import {
   codeBlock,
   CommandInteraction,
   EmbedBuilder,
+  Locale,
 } from 'discord.js';
 import { Discord, Slash, SlashOption } from 'discordx';
 import { evaluate } from 'mathjs';
+import { CalcLang } from '@gbot/meta';
 
 @Discord()
 export abstract class Calc {
   @Slash({
     // Slash Info
-    name: 'calculate',
-    description: 'I calculate your mathematic expression',
-    dmPermission: true,
+    name: CalcLang().info.name,
+    description: CalcLang().info.description,
+    dmPermission: CalcLang().info.dmPermission,
 
     // Name Localization
     nameLocalizations: {
-      'pt-BR': 'calcular',
+      'pt-BR': CalcLang(Locale.PortugueseBR).info.name,
+      'en-US': CalcLang(Locale.EnglishUS).info.name,
     },
 
     // Description Localization
     descriptionLocalizations: {
-      'pt-BR': 'Eu calculo sua expressão matemática',
+      'pt-BR': CalcLang(Locale.PortugueseBR).info.description,
+      'en-US': CalcLang(Locale.EnglishUS).info.description,
     },
   })
   async Handle(
     @SlashOption({
       // Slash Option
-      name: 'expression',
-      description: 'The mathematical expression',
-      type: ApplicationCommandOptionType.String,
-      required: true,
+      name: CalcLang().options.expression.name,
+      description: CalcLang().options.expression.description,
+      type: CalcLang().options.expression.type,
+      required: CalcLang().options.expression.required,
 
       // Limiter
-      maxLength: 1000,
-      minLength: 3,
+      maxLength: CalcLang().options.expression.maxLength,
+      minLength: CalcLang().options.expression.minLength,
 
       // Name Localization
       nameLocalizations: {
-        'pt-BR': 'expressão',
+        'pt-BR': CalcLang(Locale.PortugueseBR).options.expression.name,
+        'en-US': CalcLang(Locale.EnglishUS).options.expression.name,
       },
 
       // Description Localization
       descriptionLocalizations: {
-        'pt-BR': 'A expressão matemática',
+        'pt-BR': CalcLang(Locale.PortugueseBR).options.expression.description,
+        'en-US': CalcLang(Locale.EnglishUS).options.expression.description,
       },
     })
     expression: string,
 
     @SlashOption({
       // Slash Option
-      name: 'scope',
-      description: 'The scope of the mathematical expression',
-      type: ApplicationCommandOptionType.String,
-      required: false,
+      name: CalcLang().options.scope.name,
+      description: CalcLang().options.scope.description,
+      type: CalcLang().options.scope.type,
+      required: CalcLang().options.scope.required,
 
       // Limiter
-      maxLength: 1000,
-      minLength: 5,
+      maxLength: CalcLang().options.scope.maxLength,
+      minLength: CalcLang().options.scope.minLength,
 
       // Name Localization
       nameLocalizations: {
-        'pt-BR': 'escopo',
+        'pt-BR': CalcLang(Locale.PortugueseBR).options.scope.name,
+        'en-US': CalcLang(Locale.EnglishUS).options.scope.name,
       },
 
       // Description Localization
       descriptionLocalizations: {
-        'pt-BR': 'O escopo da expressão matemática',
+        'pt-BR': CalcLang(Locale.PortugueseBR).options.scope.description,
+        'en-US': CalcLang(Locale.EnglishUS).options.scope.description,
       },
     })
     scope: string,
 
     command: CommandInteraction,
   ) {
+    const loc = CalcLang(command.locale);
+
     await command.deferReply({
       ephemeral: false,
       fetchReply: true,
     });
 
+    const successEmbedLoc = loc.strings.successEmbed;
+
     // Embed of the message
-    const embed = new EmbedBuilder()
-      .setTitle('Calculo')
-      .setColor('Random')
+    const successEmbed = new EmbedBuilder()
+      .setTitle(successEmbedLoc.title as string)
+      .setColor(successEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${command.user.tag}`,
-        iconURL: String(command.user.avatarURL()),
+        text: successEmbedLoc.footer.text(command.user.tag),
+        iconURL: successEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
       .setTimestamp();
 
     // Add the Expression
-    embed.addFields({
-      name: ':stopwatch: Sua expressão',
-      value: codeBlock(expression),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields[0].name,
+      value: successEmbedLoc.fields[0].value(expression),
     });
 
     // ???
     let result = '';
-    const mScope: object = <object>JSON.parse(scope ?? '{}');
+    const mScope: object = JSON.parse(scope ?? '{}');
 
     try {
       result = String(evaluate(expression, mScope));
     } catch {
-      const embed = new EmbedBuilder()
-        .setTitle('Calculo')
-        .setColor('Random')
-        .setDescription('Expressão ou escopo invalida!')
+      const failEmbedLoc = loc.strings.failEmbed;
+
+      const failEmbed = new EmbedBuilder()
+        .setTitle(failEmbedLoc.title)
+        .setColor(failEmbedLoc.color)
+        .setDescription(failEmbedLoc.description)
         .setFooter({
-          text: `Comando enviado por ${command.user.tag}`,
-          iconURL: String(command.user.avatarURL()),
+          text: failEmbedLoc.footer.text(command.user.tag),
+          iconURL: failEmbedLoc.footer.icon(String(command.user.avatarURL())),
         })
         .setTimestamp();
 
-      await command.editReply({
-        content: `<@${command.user.id}>`,
-        embeds: [embed],
+      await command.followUp({
+        content: loc.strings.content(command.user.id),
+        embeds: [failEmbed],
       });
 
       return;
     }
 
     // Add the Result of expression
-    embed.addFields({
-      name: ':zap: Resultado da expressão',
-      value: codeBlock(result),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields[1].name,
+      value: successEmbedLoc.fields[1].value(result),
     });
 
     // Return the embed
     await command.editReply({
-      content: `<@${command.user.id}>`,
-      embeds: [embed],
+      content: loc.strings.content(command.user.id),
+      embeds: [successEmbed],
     });
+
+    return;
   }
 }

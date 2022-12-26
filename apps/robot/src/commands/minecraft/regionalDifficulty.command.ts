@@ -78,6 +78,7 @@ export abstract class RegionalDifficulty {
   ) {
     await command.deferReply({
       ephemeral: true,
+      fetchReply: true,
     });
 
     // Embed of the message
@@ -106,9 +107,11 @@ export abstract class RegionalDifficulty {
     });
 
     // Ping Command
-    await command.editReply({
+    await command.followUp({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });
+
+    return;
   }
 }

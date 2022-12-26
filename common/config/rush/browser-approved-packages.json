@@ -51,6 +51,10 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
+      "name": "@gbot/meta",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@koa/router",
       "allowedCategories": [ "production" ]
     },

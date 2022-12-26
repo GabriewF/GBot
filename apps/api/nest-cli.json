@@ -3,7 +3,7 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "monorepo": true,
-  "entryFile": "src/",
+  "entryFile": "index.js",
   "compilerOptions": {
     "tsConfigPath": "tsconfig.json",
     "webpack": false,

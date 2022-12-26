@@ -14,10 +14,10 @@
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 
-    "start": "node dist/index",
-    "prod": "nest start",
+    "start": "nest start",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
+    "prod": "node dist/index",
 
     "lint": "eslint --fix"
   },

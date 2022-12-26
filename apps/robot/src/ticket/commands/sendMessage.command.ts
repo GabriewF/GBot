@@ -79,6 +79,7 @@ export abstract class SendMessage {
 
     await command.deferReply({
       ephemeral: true,
+      fetchReply: true,
     });
 
     if (!channel.isTextBased()) {

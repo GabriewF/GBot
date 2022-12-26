@@ -29,9 +29,7 @@ import { PinoLogger } from './loggers/pino';
 
 export const AppDataSource = new DataSource({
   type: 'cockroachdb',
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: { rejectUnauthorized: false },
 
   url: String(process.env['DB_URL']),
 

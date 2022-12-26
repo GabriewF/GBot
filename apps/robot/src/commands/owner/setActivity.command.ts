@@ -181,6 +181,7 @@ export abstract class SetActivity {
 
     await command.deferReply({
       ephemeral: true,
+      fetchReply: true,
     });
 
     client.user.setActivity({
@@ -198,9 +199,11 @@ export abstract class SetActivity {
       })
       .setTimestamp();
 
-    await command.editReply({
+    await command.followUp({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });
+
+    return;
   }
 }
