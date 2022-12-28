@@ -31,8 +31,6 @@ export abstract class Error {
   @Once({ event: 'error' })
   async Handle([error]: ArgsOf<'error'>) {
     // Log error
-    pino.error(error.name);
-    pino.error(error.message);
-    pino.error(error.cause);
+    pino.error(error);
   }
 }

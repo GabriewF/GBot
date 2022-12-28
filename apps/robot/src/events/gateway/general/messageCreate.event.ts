@@ -30,11 +30,16 @@ import { ArgsOf, Client, Discord, On } from 'discordx';
 export abstract class MessageCreate {
   @On({ event: 'messageCreate' })
   async Handle([msg]: ArgsOf<'messageCreate'>, client: Client) {
-    // Execute command
+    if (msg.author.bot) return;
+
     try {
+      // Execute commands
       await client.executeCommand(msg);
     } catch (err) {
-      await msg.reply('Erro ao executar esse comando...');
+      const executeCommandFail = 'Falha ao executar esse comando...';
+
+      // Log fail
+      pino.error(executeCommandFail);
     }
 
     // Log message

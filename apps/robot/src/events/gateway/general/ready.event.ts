@@ -50,24 +50,38 @@ export abstract class Ready {
     // Make sure all guilds are cached
     pino.warn('Synchronizing guilds...');
 
-    const syncGuildSuccess = 'Synchronized guilds...';
-    const syncGuildFailed = 'Error when synchronizing guilds...';
+    try {
+      const syncGuildSuccess = 'Synchronized guilds...';
 
-    await client.guilds
-      .fetch()
-      .then(() => pino.info(syncGuildSuccess))
-      .catch(() => pino.error(syncGuildFailed));
+      // Fetch Guilds
+      await client.guilds.fetch();
+
+      // Log success
+      pino.info(syncGuildSuccess);
+    } catch (err) {
+      const syncGuildFail = 'Error when synchronizing guilds...';
+
+      // Log fail
+      pino.error(syncGuildFail);
+    }
 
     // Synchronize applications commands with Discord
     pino.warn('Synchronizing global commands...');
 
-    const syncCommandsSuccess = 'Synchronized global commands...';
-    const syncCommandsFailed = 'Error when synchronizing global commands...';
+    try {
+      const syncCommandsSuccess = 'Synchronized global commands....';
 
-    await client
-      .initApplicationCommands()
-      .then(() => pino.info(syncCommandsSuccess))
-      .catch(() => pino.error(syncCommandsFailed));
+      // Init App Commands Guilds
+      await client.initApplicationCommands();
+
+      // Log success
+      pino.info(syncCommandsSuccess);
+    } catch (err) {
+      const syncCommandsFail = 'Error when synchronizing global commands...';
+
+      // Log fail
+      pino.error(syncCommandsFail);
+    }
 
     // To clear all guild commands, uncomment this line,
     // This is useful when moving from guild commands to global commands

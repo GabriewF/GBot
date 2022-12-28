@@ -23,13 +23,24 @@
  *  SOFTWARE.
  */
 
+import { pino } from '@gbot/logging';
 import { ArgsOf, Client, Discord, On } from 'discordx';
 
 @Discord()
 export abstract class InteractionCreate {
   @On({ event: 'interactionCreate' })
   async Handle([interaction]: ArgsOf<'interactionCreate'>, client: Client) {
-    // Execute interactio
-    await client.executeInteraction(interaction);
+    try {
+      // Execute interaction
+      await client.executeInteraction(interaction);
+    } catch (err) {
+      const failInteraction = 'Falha ao executar essa interação...';
+
+      // And Reply to the User!
+      if (interaction.isRepliable()) interaction.reply(failInteraction);
+
+      // Log Error
+      pino.error(err);
+    }
   }
 }
