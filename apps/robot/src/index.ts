@@ -62,6 +62,7 @@ export class Main {
         Partials.User,
         Partials.Channel,
         Partials.Message,
+        Partials.Reaction,
         Partials.GuildMember,
         Partials.ThreadMember,
       ],
@@ -81,12 +82,10 @@ export class Main {
       // Other
       closeTimeout: 10,
       failIfNotExists: true,
-      silent: false,
+      silent: true,
     });
 
-    await import('./commands');
-    await import('./events');
-    await import('./ticket');
+    await import('./aggregator');
 
     // Let's start the bot
     if (!process.env['DISCORD_TOKEN']) {
@@ -98,5 +97,8 @@ export class Main {
     await this.client.login(String(process.env['DISCORD_TOKEN']));
   }
 }
+
+process.on('uncaughtException', (err) => pino.error(err));
+process.on('unhandledRejection', (err) => pino.error(err));
 
 Main.start();
