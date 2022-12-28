@@ -23,12 +23,7 @@
  *  SOFTWARE.
  */
 
-import {
-  codeBlock,
-  CommandInteraction,
-  EmbedBuilder,
-  Locale,
-} from 'discord.js';
+import { CommandInteraction, EmbedBuilder, Locale } from 'discord.js';
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx';
 import { XTLLang } from '@gbot/meta';
 
@@ -112,11 +107,6 @@ export abstract class XpToLevel {
     }
 
     levels = levels - 1;
-
-    successEmbed.addFields({
-      name: ':shield: Leveis de XP',
-      value: codeBlock(String(levels)),
-    });
 
     successEmbed.addFields({
       name: successEmbedLoc.fields.xpLevels.text,
