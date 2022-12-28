@@ -1,8 +1,8 @@
 /*
  * This file is part of GBot, licensed under the MIT License.
  *
- *  Copyright (c) GabriewF (F. Gabriel) <feegasaa@gmail.com>
- *  Copyright (c) contributors
+ *  Copyright 2022 (c) GabriewF
+ *  Copyright 2022 (c) contributors
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
