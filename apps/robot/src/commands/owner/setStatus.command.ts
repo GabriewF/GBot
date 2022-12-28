@@ -124,10 +124,7 @@ export abstract class SetStatus {
   ) {
     if (!client.user) return;
 
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     client.user.setStatus(status);
 
@@ -140,7 +137,7 @@ export abstract class SetStatus {
       })
       .setTimestamp();
 
-    await command.followUp({
+    await command.editReply({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });

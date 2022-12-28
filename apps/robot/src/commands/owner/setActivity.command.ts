@@ -179,10 +179,7 @@ export abstract class SetActivity {
   ) {
     if (!client.user) return;
 
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     client.user.setActivity({
       name: name,
@@ -199,7 +196,7 @@ export abstract class SetActivity {
       })
       .setTimestamp();
 
-    await command.followUp({
+    await command.editReply({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });

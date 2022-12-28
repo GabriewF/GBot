@@ -72,10 +72,7 @@ export abstract class SetBio {
 
     command: CommandInteraction,
   ) {
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     const apiClient = await getApiClient(command.user.id);
 
@@ -109,7 +106,7 @@ export abstract class SetBio {
       })
       .setTimestamp();
 
-    await command.followUp({
+    await command.editReply({
       content: `<@${command.user.id}>`,
       embeds: [embed],
     });

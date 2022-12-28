@@ -67,10 +67,7 @@ export abstract class SetTitle {
 
     command: CommandInteraction,
   ) {
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     const apiClient = await getApiClient(command.user.id);
 
@@ -83,7 +80,7 @@ export abstract class SetTitle {
     //   url: ''
     // })
 
-    await command.followUp(`Seu titulo...`);
+    await command.editReply(`Seu titulo...`);
 
     return;
   }
