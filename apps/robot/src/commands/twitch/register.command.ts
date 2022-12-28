@@ -59,10 +59,7 @@ export abstract class Register {
   })
   @SlashGroup('twitch')
   async Handle(command: CommandInteraction) {
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     slashCommand = command;
 
@@ -125,7 +122,7 @@ export abstract class Register {
       type: ComponentType.ActionRow,
     });
 
-    await command.followUp({
+    await command.editReply({
       embeds: [embed],
       components: [buttonRow],
     });
