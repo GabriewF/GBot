@@ -48,46 +48,62 @@ export abstract class Ping {
     },
   })
   async Handle(command: CommandInteraction) {
-    const loc = PingLang(command.locale);
-
     await command.deferReply({
-      ephemeral: false,
-      fetchReply: true,
+      ephemeral: true,
     });
 
-    const successEmbedLoc = loc.strings.successEmbed;
+    const loc = PingLang(command.locale);
+    const pingEmbedLoc = loc.embeds.pingEmbed;
 
     // Embed of the message
-    const successEmbed = new EmbedBuilder()
-      .setTitle(successEmbedLoc.title)
-      .setColor(successEmbedLoc.color)
+    const pingEmbed = new EmbedBuilder()
+      .setTitle(pingEmbedLoc.title)
+      .setColor(pingEmbedLoc.color)
       .setFooter({
-        text: successEmbedLoc.footer.text(command.user.tag),
-        iconURL: successEmbedLoc.footer.icon(String(command.user.avatarURL())),
+        text: pingEmbedLoc.footer.text(command.user.tag),
+        iconURL: pingEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
+      .setFields([
+        {
+          name: pingEmbedLoc.fields[0].name,
+          value: pingEmbedLoc.fields[0].preValue,
+        },
+        {
+          name: pingEmbedLoc.fields[1].name,
+          value: pingEmbedLoc.fields[1].preValue,
+        },
+      ])
       .setTimestamp();
 
-    // Get Ping
-    const gatewayPing = loc.strings.gatewayPing(command.client.ws.ping);
-
-    // Add the Gateway Ping
-    successEmbed.addFields({
-      name: successEmbedLoc.fields[0].name,
-      value: successEmbedLoc.fields[0].value(gatewayPing),
+    const sent = await command.editReply({
+      content: loc.content(command.user.id),
+      embeds: [pingEmbed],
     });
 
-    const apiPing = loc.strings.apiPing(command.createdTimestamp);
+    // Get Ping
+    const gatewayPing = loc.gatewayPing(command.client.ws.ping);
+
+    // Add the Gateway Ping
+    pingEmbed.spliceFields(0, 1, {
+      name: pingEmbedLoc.fields[0].name,
+      value: pingEmbedLoc.fields[0].value(gatewayPing),
+    });
+
+    const apiPing = loc.apiPing(
+      sent.createdTimestamp,
+      command.createdTimestamp,
+    );
 
     // Add the API Ping
-    successEmbed.addFields({
-      name: successEmbedLoc.fields[1].name,
-      value: successEmbedLoc.fields[1].value(apiPing),
+    pingEmbed.spliceFields(1, 1, {
+      name: pingEmbedLoc.fields[1].name,
+      value: pingEmbedLoc.fields[1].value(apiPing),
     });
 
     // Return the embed
-    await command.followUp({
-      content: loc.strings.content(command.user.id),
-      embeds: [successEmbed],
+    await command.editReply({
+      content: loc.content(command.user.id),
+      embeds: [pingEmbed],
     });
 
     return;
