@@ -48,9 +48,7 @@ export abstract class Ping {
     },
   })
   async Handle(command: CommandInteraction) {
-    await command.deferReply({
-      ephemeral: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     const loc = PingLang(command.locale);
     const pingEmbedLoc = loc.embeds.pingEmbed;
