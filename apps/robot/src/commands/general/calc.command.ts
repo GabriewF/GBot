@@ -101,14 +101,10 @@ export abstract class Calc {
 
     command: CommandInteraction,
   ) {
+    await command.deferReply({ ephemeral: true });
+
     const loc = CalcLang(command.locale);
-
-    await command.deferReply({
-      ephemeral: false,
-      fetchReply: true,
-    });
-
-    const successEmbedLoc = loc.strings.successEmbed;
+    const successEmbedLoc = loc.embeds.successEmbed;
 
     // Embed of the message
     const successEmbed = new EmbedBuilder()
@@ -133,7 +129,7 @@ export abstract class Calc {
     try {
       result = String(evaluate(expression, mScope));
     } catch {
-      const failEmbedLoc = loc.strings.failEmbed;
+      const failEmbedLoc = loc.embeds.failEmbed;
 
       const failEmbed = new EmbedBuilder()
         .setTitle(failEmbedLoc.title)
@@ -145,8 +141,8 @@ export abstract class Calc {
         })
         .setTimestamp();
 
-      await command.followUp({
-        content: loc.strings.content(command.user.id),
+      await command.editReply({
+        content: loc.content(command.user.id),
         embeds: [failEmbed],
       });
 
@@ -161,7 +157,7 @@ export abstract class Calc {
 
     // Return the embed
     await command.editReply({
-      content: loc.strings.content(command.user.id),
+      content: loc.content(command.user.id),
       embeds: [successEmbed],
     });
 
