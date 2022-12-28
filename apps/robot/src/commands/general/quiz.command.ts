@@ -53,13 +53,9 @@ export abstract class Quiz {
     },
   })
   async Handle(command: CommandInteraction) {
+    await command.deferReply({ ephemeral: true });
+
     const loc = QuizLang(command.locale).query.query01;
-
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
-
     const questionEmbedLoc = loc.embeds.questionEmbed;
 
     const questionEmbed = new EmbedBuilder()
@@ -91,7 +87,7 @@ export abstract class Quiz {
       noButton,
     );
 
-    await command.followUp({
+    await command.editReply({
       embeds: [questionEmbed],
       components: [buttonRow],
     });
@@ -102,9 +98,10 @@ export abstract class Quiz {
   // First Question
   @ButtonComponent({ id: 'Query01_Response01' })
   async Query01_Response01(interaction: ButtonInteraction) {
-    const loc = QuizLang(interaction.locale).query.query02;
     response.set('Query01', true);
+    await interaction.deferUpdate();
 
+    const loc = QuizLang(interaction.locale).query.query02;
     const questionEmbedLoc = loc.embeds.questionEmbed;
 
     const questionEmbed = new EmbedBuilder()
@@ -148,9 +145,10 @@ export abstract class Quiz {
 
   @ButtonComponent({ id: 'Query01_Response02' })
   async Query01_Response02(interaction: ButtonInteraction) {
-    const loc = QuizLang(interaction.locale).query.query02;
     response.set('Query01', false);
+    await interaction.deferUpdate();
 
+    const loc = QuizLang(interaction.locale).query.query02;
     const questionEmbedLoc = loc.embeds.questionEmbed;
 
     const questionEmbed = new EmbedBuilder()
@@ -196,7 +194,7 @@ export abstract class Quiz {
   @ButtonComponent({ id: 'Query02_Response01' })
   async Query02_Response01(interaction: ButtonInteraction) {
     response.set('Question02', true);
-    this.Finalize(interaction);
+    await this.Finalize(interaction);
 
     return;
   }
@@ -204,30 +202,32 @@ export abstract class Quiz {
   @ButtonComponent({ id: 'Query02_Response02' })
   async Query02_Response02(interaction: ButtonInteraction) {
     response.set('Question02', false);
-    this.Finalize(interaction);
+    await this.Finalize(interaction);
 
     return;
   }
 
   @ButtonComponent({ id: 'Finalize' })
   async Finalize(interaction: ButtonInteraction) {
-    const loc = QuizLang(interaction.locale).query.finalize;
-    const finalizeEmbedLoc = loc.embeds.finalEmbed;
+    await interaction.deferUpdate();
 
-    const finalizeEmbed = new EmbedBuilder()
-      .setTitle(finalizeEmbedLoc.title)
-      .setDescription(finalizeEmbedLoc.description)
-      .setColor(finalizeEmbedLoc.color)
+    const loc = QuizLang(interaction.locale).query.finalize;
+    const finalEmbedLoc = loc.embeds.finalEmbed;
+
+    const finalEmbed = new EmbedBuilder()
+      .setTitle(finalEmbedLoc.title)
+      .setDescription(finalEmbedLoc.description)
+      .setColor(finalEmbedLoc.color)
       .setFooter({
-        text: finalizeEmbedLoc.footer.text(interaction.user.tag),
-        iconURL: finalizeEmbedLoc.footer.icon(
+        text: finalEmbedLoc.footer.text(interaction.user.tag),
+        iconURL: finalEmbedLoc.footer.icon(
           String(interaction.user.avatarURL()),
         ),
       })
       .setTimestamp();
 
     await interaction.update({
-      embeds: [finalizeEmbed],
+      embeds: [finalEmbed],
       components: [],
     });
 
