@@ -38,17 +38,17 @@ import {
 } from 'discordx';
 
 interface XTLInterface {
-  // Slash - L37
+  // Slash - L32
   info: Omit<
     ApplicationCommandOptions<VerifyName<string>, NotEmpty<string>>,
     'nameLocalizations' | 'descriptionLocalizations'
   >;
 
-  // Content - L128
+  // Content - L118
   content: (userId: string) => string;
 
   options: {
-    // XP Levels - L57
+    // XP Levels - L52
     xpLevels: Omit<
       SlashOptionNumberOptions<VName<string>, string>,
       'nameLocalizations' | 'descriptionLocalizations'
@@ -56,7 +56,7 @@ interface XTLInterface {
   };
 
   embeds: {
-    // Success Embed - L90
+    // Success Embed - L85
     successEmbed: {
       title: string;
       color: ColorResolvable;
@@ -86,18 +86,18 @@ type XTLRecord = Record<Locale, XTLInterface>;
 const XTLCommand: Partial<XTLRecord> = {
   // English, US - English, US
   [Locale.EnglishUS]: {
-    // Slash - L37
+    // Slash - L32
     info: {
       name: 'xp_to_level',
       description: 'I give you the leveis of this XP points!',
       dmPermission: true,
     },
 
-    // Content - L128
+    // Content - L118
     content: (userId: string) => `<@${userId}>`,
 
     options: {
-      // XP Levels - L57
+      // XP Levels - L52
       xpLevels: {
         name: 'xp_points',
         description: 'Your xp points',
@@ -110,7 +110,7 @@ const XTLCommand: Partial<XTLRecord> = {
     },
 
     embeds: {
-      // Success Embed - L90
+      // Success Embed - L85
       successEmbed: {
         title: 'XP Points',
         color: 'Random',
@@ -137,18 +137,18 @@ const XTLCommand: Partial<XTLRecord> = {
 
   // Portuguese, Brazilian - Português do Brasil
   [Locale.PortugueseBR]: {
-    // Slash - L37
+    // Slash - L32
     info: {
       name: 'xp_para_level',
       description: 'Eu te dou os níveis desses pontos de XP!',
       dmPermission: true,
     },
 
-    // Content - L128
+    // Content - L118
     content: (userId: string) => `<@${userId}>`,
 
     options: {
-      // XP Levels - L57
+      // XP Levels - L52
       xpLevels: {
         name: 'pontos_de_xp',
         description: 'Seus pontos de XP',
@@ -161,7 +161,7 @@ const XTLCommand: Partial<XTLRecord> = {
     },
 
     embeds: {
-      // Success Embed - L90
+      // Success Embed - L85
       successEmbed: {
         title: 'Pontos de XP',
         color: 'Random',
