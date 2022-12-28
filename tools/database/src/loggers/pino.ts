@@ -28,13 +28,7 @@ import { pino } from '@gbot/logging';
 
 export class PinoLogger implements Logger {
   logQuery(query: string, parameters?: unknown[] | undefined) {
-    const sql =
-      query +
-      (parameters && parameters.length
-        ? ' -- PARAMETERS: ' + JSON.stringify(parameters)
-        : '');
-
-    pino.info('query:', sql);
+    pino.info('query:', query, parameters);
     return;
   }
 
@@ -43,13 +37,7 @@ export class PinoLogger implements Logger {
     query: string,
     parameters?: unknown[] | undefined,
   ) {
-    const sql =
-      query +
-      (parameters && parameters.length
-        ? ' -- PARAMETERS: ' + JSON.stringify(parameters)
-        : '');
-
-    pino.error(`query failed:`, sql);
+    pino.error(`query failed:`, query, parameters);
     pino.error(`error:`, error);
     return;
   }
@@ -59,13 +47,7 @@ export class PinoLogger implements Logger {
     query: string,
     parameters?: unknown[] | undefined,
   ) {
-    const sql =
-      query +
-      (parameters && parameters.length
-        ? ' -- PARAMETERS: ' + JSON.stringify(parameters)
-        : '');
-
-    pino.warn(`query is slow:`, sql);
+    pino.warn(`query is slow:`, query, parameters);
     pino.warn(`execution time:`, time);
     return;
   }
