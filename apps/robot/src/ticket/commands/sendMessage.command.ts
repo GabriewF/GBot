@@ -77,10 +77,7 @@ export abstract class SendMessage {
   ) {
     if (!client.user) return;
 
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
 
     if (!channel.isTextBased()) {
       await command.editReply('Use um canal de texto!');
