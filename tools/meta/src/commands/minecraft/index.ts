@@ -23,5 +23,6 @@
  *  SOFTWARE.
  */
 
-export * from './general';
-export * from './minecraft';
+export * from './minecraft.command';
+export * from './regionalDifficulty.command';
+export * from './xpToLevel.command';

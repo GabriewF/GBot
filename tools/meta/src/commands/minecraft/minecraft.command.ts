@@ -23,5 +23,47 @@
  *  SOFTWARE.
  */
 
-export * from './general';
-export * from './minecraft';
+import { Locale } from 'discord.js';
+import { VerifyName, NotEmpty, SlashGroupOptions } from 'discordx';
+
+interface MinecraftInterface {
+  // Slash - L31
+  info: Omit<
+    SlashGroupOptions<VerifyName<string>, NotEmpty<string>, VerifyName<string>>,
+    'nameLocalizations' | 'descriptionLocalizations'
+  >;
+}
+
+type MinecraftRecord = Record<Locale, MinecraftInterface>;
+
+const MinecraftCommand: Partial<MinecraftRecord> = {
+  // English, US - English, US
+  [Locale.EnglishUS]: {
+    // Slash - L31
+    info: {
+      name: 'minecraft',
+      description: 'Minecraft-related commands',
+      dmPermission: true,
+    },
+  },
+
+  // Portuguese, Brazilian - Português do Brasil
+  [Locale.PortugueseBR]: {
+    // Slash - L31
+    info: {
+      name: 'minecraft',
+      description: 'Comandos relacionados ao Minecraft',
+      dmPermission: true,
+    },
+  },
+};
+
+export const MinecraftLang = (loc?: Locale) => {
+  const locale = (loc ?? Locale.EnglishUS) as Locale;
+  switch (Object.hasOwn(MinecraftCommand, locale)) {
+    case true:
+      return MinecraftCommand[locale] as MinecraftInterface;
+    default:
+      return MinecraftCommand[Locale.EnglishUS] as MinecraftInterface;
+  }
+};

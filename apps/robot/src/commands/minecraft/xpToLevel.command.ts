@@ -24,76 +24,81 @@
  */
 
 import {
-  ApplicationCommandOptionType,
   codeBlock,
   CommandInteraction,
   EmbedBuilder,
+  Locale,
 } from 'discord.js';
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx';
+import { XTLLang } from '@gbot/meta';
 
 @Discord()
 export abstract class XpToLevel {
   @Slash({
     // Slash Info
-    name: 'xp_to_level',
-    description: 'I give you the leveis of this XP points!',
-    dmPermission: true,
+    name: XTLLang().info.name,
+    description: XTLLang().info.description,
+    dmPermission: XTLLang().info.dmPermission,
 
     // Name Localization
     nameLocalizations: {
-      'pt-BR': 'xp_para_leveis',
+      'pt-BR': XTLLang(Locale.PortugueseBR).info.name,
+      'en-US': XTLLang(Locale.EnglishUS).info.name,
     },
 
     // Description Localization
     descriptionLocalizations: {
-      'pt-BR': 'Eu lhe dou os leveis desses pontos de XP',
+      'pt-BR': XTLLang(Locale.PortugueseBR).info.description,
+      'en-US': XTLLang(Locale.EnglishUS).info.description,
     },
   })
   @SlashGroup('minecraft')
   async Handle(
     @SlashOption({
-      // Slash Option
-      name: 'xp_points',
-      description: 'Your xp points',
-      type: ApplicationCommandOptionType.Integer,
-      required: true,
+      // Slash Option Info
+      name: XTLLang().options.xpLevels.name,
+      description: XTLLang().options.xpLevels.description,
+      type: XTLLang().options.xpLevels.type,
+      required: XTLLang().options.xpLevels.required,
 
       // Limiter
-      maxValue: 1000000,
-      minValue: 0,
+      maxValue: XTLLang().options.xpLevels.maxValue,
+      minValue: XTLLang().options.xpLevels.minValue,
 
       // Name Localization
       nameLocalizations: {
-        'pt-BR': 'pontos_de_xp',
+        'pt-BR': XTLLang(Locale.PortugueseBR).options.xpLevels.name,
+        'en-US': XTLLang(Locale.EnglishUS).options.xpLevels.name,
       },
 
       // Description Localization
       descriptionLocalizations: {
-        'pt-BR': 'Seus pontos de XP',
+        'pt-BR': XTLLang(Locale.PortugueseBR).options.xpLevels.description,
+        'en-US': XTLLang(Locale.EnglishUS).options.xpLevels.description,
       },
     })
     xpPoints: bigint,
 
     command: CommandInteraction,
   ) {
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
+
+    const loc = XTLLang(command.locale);
+    const successEmbedLoc = loc.embeds.successEmbed;
 
     // Embed of the message
-    const embed = new EmbedBuilder()
-      .setTitle('Pontos de XP')
-      .setColor('Random')
+    const successEmbed = new EmbedBuilder()
+      .setTitle(successEmbedLoc.title)
+      .setColor(successEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${command.user.tag}`,
-        iconURL: String(command.user.avatarURL()),
+        text: successEmbedLoc.footer.text(command.user.tag),
+        iconURL: successEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
       .setTimestamp();
 
-    embed.addFields({
-      name: ':crossed_swords: Pontos de XP',
-      value: codeBlock(String(xpPoints)),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields.xpPoints.text,
+      value: successEmbedLoc.fields.xpPoints.value(xpPoints),
     });
 
     let points = Number(xpPoints);
@@ -108,15 +113,20 @@ export abstract class XpToLevel {
 
     levels = levels - 1;
 
-    embed.addFields({
+    successEmbed.addFields({
       name: ':shield: Leveis de XP',
       value: codeBlock(String(levels)),
     });
 
+    successEmbed.addFields({
+      name: successEmbedLoc.fields.xpLevels.text,
+      value: successEmbedLoc.fields.xpLevels.value(levels),
+    });
+
     // Ping Command
-    await command.followUp({
-      content: `<@${command.user.id}>`,
-      embeds: [embed],
+    await command.editReply({
+      content: loc.content(command.user.id),
+      embeds: [successEmbed],
     });
 
     return;

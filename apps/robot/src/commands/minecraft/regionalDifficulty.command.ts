@@ -23,77 +23,83 @@
  *  SOFTWARE.
  */
 
-import {
-  ApplicationCommandOptionType,
-  codeBlock,
-  CommandInteraction,
-  EmbedBuilder,
-} from 'discord.js';
+import { CommandInteraction, EmbedBuilder, Locale } from 'discord.js';
 import { Discord, Slash, SlashGroup, SlashOption } from 'discordx';
+import { RDifficultyLang } from '@gbot/meta';
 
 @Discord()
 export abstract class RegionalDifficulty {
   @Slash({
     // Slash Info
-    name: 'regional_difficulty',
-    description: 'I give you the clamped regional difficulty!',
-    dmPermission: true,
+    name: RDifficultyLang().info.name,
+    description: RDifficultyLang().info.description,
+    dmPermission: RDifficultyLang().info.dmPermission,
 
     // Name Localization
     nameLocalizations: {
-      'pt-BR': 'dificuldade_regional',
+      'pt-BR': RDifficultyLang(Locale.PortugueseBR).info.name,
+      'en-US': RDifficultyLang(Locale.EnglishUS).info.name,
     },
 
     // Description Localization
     descriptionLocalizations: {
-      'pt-BR': 'Retorno com a dificuldade local apertada',
+      'pt-BR': RDifficultyLang(Locale.PortugueseBR).info.description,
+      'en-US': RDifficultyLang(Locale.EnglishUS).info.description,
     },
   })
   @SlashGroup('minecraft')
   async Handle(
     @SlashOption({
       // Slash Option Info
-      name: 'regional_difficulty',
-      description: 'Your regional difficulty',
-      type: ApplicationCommandOptionType.Number,
-      required: true,
+      name: RDifficultyLang().options.regionalDifficulty.name,
+      description: RDifficultyLang().options.regionalDifficulty.description,
+      type: RDifficultyLang().options.regionalDifficulty.type,
+      required: RDifficultyLang().options.regionalDifficulty.required,
 
-      // Limiter
-      maxValue: 6.75,
-      minValue: 0.0,
+      // Limiters
+      maxValue: RDifficultyLang().options.regionalDifficulty.maxValue,
+      minValue: RDifficultyLang().options.regionalDifficulty.minValue,
 
       // Name Localization
       nameLocalizations: {
-        'pt-BR': 'dificuldade_regional',
+        'pt-BR': RDifficultyLang(Locale.PortugueseBR).options.regionalDifficulty
+          .name,
+        'en-US': RDifficultyLang(Locale.EnglishUS).options.regionalDifficulty
+          .name,
       },
 
       // Description Localization
       descriptionLocalizations: {
-        'pt-BR': 'Sua dificuldade regional',
+        'pt-BR': RDifficultyLang(Locale.PortugueseBR).options.regionalDifficulty
+          .description,
+        'en-US': RDifficultyLang(Locale.EnglishUS).options.regionalDifficulty
+          .description,
       },
     })
     regionalDifficulty: number,
 
     command: CommandInteraction,
   ) {
-    await command.deferReply({
-      ephemeral: true,
-      fetchReply: true,
-    });
+    await command.deferReply({ ephemeral: true });
+
+    const loc = RDifficultyLang(command.locale);
+    const successEmbedLoc = loc.embeds.successEmbed;
 
     // Embed of the message
-    const embed = new EmbedBuilder()
-      .setTitle('Dificuldade Regional')
-      .setColor('Random')
+    const successEmbed = new EmbedBuilder()
+      .setTitle(successEmbedLoc.title)
+      .setColor(successEmbedLoc.color)
       .setFooter({
-        text: `Comando enviado por ${command.user.tag}`,
-        iconURL: String(command.user.avatarURL()),
+        text: successEmbedLoc.footer.text(command.user.tag),
+        iconURL: successEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
       .setTimestamp();
 
-    embed.addFields({
-      name: ':crossed_swords: Dificuldade Regional',
-      value: codeBlock(String(regionalDifficulty)),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields.regionalDifficulty.text,
+      value: successEmbedLoc.fields.regionalDifficulty.value(
+        String(regionalDifficulty),
+      ),
     });
 
     let clampedRegionalDifficulty = (regionalDifficulty - 1.0) / 2.0;
@@ -101,15 +107,17 @@ export abstract class RegionalDifficulty {
     if (regionalDifficulty < 2.0) clampedRegionalDifficulty = 0.0;
     if (regionalDifficulty > 4.0) clampedRegionalDifficulty = 1.0;
 
-    embed.addFields({
-      name: ':shield: Dificuldade regional apertada',
-      value: codeBlock(String(clampedRegionalDifficulty)),
+    successEmbed.addFields({
+      name: successEmbedLoc.fields.clampedRegionalDifficulty.text,
+      value: successEmbedLoc.fields.clampedRegionalDifficulty.value(
+        String(clampedRegionalDifficulty),
+      ),
     });
 
     // Ping Command
-    await command.followUp({
-      content: `<@${command.user.id}>`,
-      embeds: [embed],
+    await command.editReply({
+      content: loc.content(command.user.id),
+      embeds: [successEmbed],
     });
 
     return;

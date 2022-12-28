@@ -24,16 +24,27 @@
  */
 
 import { Discord, SlashGroup } from 'discordx';
+import { MinecraftLang } from '@gbot/meta';
+import { Locale } from 'discord.js';
 
 @Discord()
 @SlashGroup({
   // Info of the group
-  name: 'minecraft',
-  description: 'Minecraft-related commands',
+  name: MinecraftLang().info.name,
+  description: MinecraftLang().info.description,
+  dmPermission: MinecraftLang().info.dmPermission,
+
+  // Name localization
+  // Description localization
+  nameLocalizations: {
+    'pt-BR': MinecraftLang(Locale.PortugueseBR).info.name,
+    'en-US': MinecraftLang(Locale.EnglishUS).info.name,
+  },
 
   // Description localization
   descriptionLocalizations: {
-    'pt-BR': 'Comandos relacionados ao minecraft',
+    'pt-BR': MinecraftLang(Locale.PortugueseBR).info.description,
+    'en-US': MinecraftLang(Locale.EnglishUS).info.description,
   },
 })
 export abstract class Minecraft {}
