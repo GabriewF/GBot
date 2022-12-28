@@ -135,7 +135,7 @@ export abstract class Quiz {
       noButton,
     );
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [questionEmbed],
       components: [buttonRow],
     });
@@ -182,7 +182,7 @@ export abstract class Quiz {
       noButton,
     );
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [questionEmbed],
       components: [buttonRow],
     });
@@ -226,7 +226,7 @@ export abstract class Quiz {
       })
       .setTimestamp();
 
-    await interaction.update({
+    await interaction.editReply({
       embeds: [finalEmbed],
       components: [],
     });
