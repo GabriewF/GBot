@@ -39,14 +39,17 @@ import {
 } from 'discordx';
 
 interface CalcInterface {
-  // Slash Command Information
+  // Slash - L33
   info: Omit<
     ApplicationCommandOptions<VerifyName<string>, NotEmpty<string>>,
     'nameLocalizations' | 'descriptionLocalizations'
   >;
 
+  // Content - L160
+  content: (userId: string) => string;
+
   options: {
-    // Expression Option - L54
+    // Expression Option - L52
     expression: Omit<
       SlashOptionStringOptions<VName<string>, string>,
       'nameLocalizations' | 'descriptionLocalizations'
@@ -59,32 +62,21 @@ interface CalcInterface {
     >;
   };
 
-  strings: {
-    // Content - L82
-    content: (userId: string) => string;
-
-    // Success Embed - L108
+  embeds: {
+    // Success Embed - L110
     successEmbed: {
-      // Title - L109
       title: string;
-
-      // Color - L110
       color: ColorResolvable;
-
-      // Footer - L111
       footer: {
         text: (tag: string) => string;
         icon: (avatarURL: string) => string;
       };
 
       fields: [
-        // Field 01 - L118
         {
           name: string;
           value: (expression: string) => string;
         },
-
-        // Field 02 - L149
         {
           name: string;
           value: (result: string) => string;
@@ -92,18 +84,11 @@ interface CalcInterface {
       ];
     };
 
-    // Fail Embed - L130
+    // Fail Embed - L134
     failEmbed: {
-      // Title - L131
       title: string;
-
-      // Color - L132
       color: ColorResolvable;
-
-      // Description - L133
       description: string;
-
-      // Footer - L111
       footer: {
         text: (tag: string) => string;
         icon: (avatarURL: string) => string;
@@ -114,18 +99,21 @@ interface CalcInterface {
 
 type CalcRecord = Record<Locale, CalcInterface>;
 
-export const CalcCommand: Partial<CalcRecord> = {
+const CalcCommand: Partial<CalcRecord> = {
   // English, US - English, US
   [Locale.EnglishUS]: {
-    // Slash Command Information
+    // Slash - L33
     info: {
       name: 'calculate',
       description: 'I calculate your mathematic expression',
       dmPermission: true,
     },
 
+    // Content - L82
+    content: (userId: string) => `<@${userId}>`,
+
     options: {
-      // Expression Option - L54
+      // Expression Option - L52
       expression: {
         name: 'expression',
         description: 'The mathematical expression',
@@ -148,32 +136,21 @@ export const CalcCommand: Partial<CalcRecord> = {
       },
     },
 
-    strings: {
-      // Content - L82
-      content: (userId: string) => `<@${userId}>`,
-
-      // Success Embed - L108
+    embeds: {
+      // Success Embed - L110
       successEmbed: {
-        // Title - L109
         title: 'Calculation',
-
-        // Color - L110
         color: resolveColor('Random'),
-
-        // Footer - L111
         footer: {
           text: (tag: string) => `Command sent by: ${tag}`,
           icon: (avatarURL: string) => avatarURL,
         },
 
         fields: [
-          // Field 01 - L118
           {
             name: ':stopwatch: Your expression',
             value: (expression: string) => codeBlock(expression),
           },
-
-          // Field 02 - L149
           {
             name: ':zap: Result of the expression',
             value: (result: string) => codeBlock(result),
@@ -181,18 +158,12 @@ export const CalcCommand: Partial<CalcRecord> = {
         ],
       },
 
-      // Fail Embed - L130
+      // Fail Embed - L134
       failEmbed: {
-        // Title - L131
         title: 'Calculation',
-
-        // Color - L132
         color: 'Random',
-
-        // Description - L133
         description: 'Invalid expression or scope!',
 
-        // Footer - L111
         footer: {
           text: (tag: string) => `Command sent by: ${tag}`,
           icon: (avatarURL: string) => avatarURL,
@@ -203,15 +174,18 @@ export const CalcCommand: Partial<CalcRecord> = {
 
   // Portuguese, Brazilian - Português do Brasil
   [Locale.PortugueseBR]: {
-    // Slash Command Information
+    // Slash - L33
     info: {
       name: 'calcular',
-      description: 'Eu calculo sua expressão matemática',
+      description: 'Eu calculo suas expressões matemáticas',
       dmPermission: true,
     },
 
+    // Content - L82
+    content: (userId: string) => `<@${userId}>`,
+
     options: {
-      // Expression Option - L54
+      // Expression Option - L52
       expression: {
         name: 'expressão',
         description: 'A expressão matemática',
@@ -234,32 +208,21 @@ export const CalcCommand: Partial<CalcRecord> = {
       },
     },
 
-    strings: {
-      // Content - L82
-      content: (userId: string) => `<@${userId}>`,
-
-      // Main Embed - L108
+    embeds: {
+      // Success Embed - L110
       successEmbed: {
-        // Title - L109
         title: 'Cálculo',
-
-        // Color - L110
         color: resolveColor('Random'),
-
-        // Footer - L111
         footer: {
           text: (tag: string) => `Comando enviado por: ${tag}`,
           icon: (avatarURL: string) => avatarURL,
         },
 
         fields: [
-          // Field 01 - L118
           {
-            name: ':stopwatch: Sua expressão',
+            name: ':stopwatch: Sua expressão matemática',
             value: (expression: string) => codeBlock(expression),
           },
-
-          // Field 01 - L149
           {
             name: ':zap: Resultado da expressão',
             value: (result: string) => codeBlock(result),
@@ -267,18 +230,12 @@ export const CalcCommand: Partial<CalcRecord> = {
         ],
       },
 
-      // Main Embed - L130
+      // Fail Embed - L134
       failEmbed: {
-        // Title - L131
         title: 'Cálculo',
-
-        // Color - L132
         color: 'Random',
+        description: 'Expressão ou escopo invalida!',
 
-        // Description - L133
-        description: 'Expressão ou escopo inválido!',
-
-        // Footer - L111
         footer: {
           text: (tag: string) => `Comando enviado por: ${tag}`,
           icon: (avatarURL: string) => avatarURL,

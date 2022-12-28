@@ -23,53 +23,49 @@
  *  SOFTWARE.
  */
 
-import { codeBlock, ColorResolvable, Locale, resolveColor } from 'discord.js';
+import { codeBlock, ColorResolvable, Locale } from 'discord.js';
 import { ApplicationCommandOptions, VerifyName, NotEmpty } from 'discordx';
 
 interface PingInterface {
-  // Slash Command Information
+  // Slash - L32
   info: Omit<
     ApplicationCommandOptions<VerifyName<string>, NotEmpty<string>>,
     'nameLocalizations' | 'descriptionLocalizations'
   >;
 
-  strings: {
-    // Content - L82
-    content: (userId: string) => string;
+  // Content - L79 | L105
+  content: (userId: string) => string;
 
-    // Success Embed - L54
-    successEmbed: {
-      // Title - L66
+  // Gateway Ping - L84
+  gatewayPing: (ping: number) => string;
+
+  // API Ping - L92
+  apiPing: (sentTimestamp: number, createdTimestamp: number) => string;
+
+  embeds: {
+    // Ping Embed - L59
+    pingEmbed: {
       title: string;
-      // Color - L67
       color: ColorResolvable;
 
-      // Footer - L68
       footer: {
         text: (tag: string) => string;
         icon: (avatarURL: string) => string;
       };
 
       fields: [
-        // Field 01 - L67
         {
           name: string;
-          value: (gatewayPing: string) => string;
+          preValue: string;
+          value: (apiPing: string) => string;
         },
-
-        // Field 01 - L75
         {
           name: string;
+          preValue: string;
           value: (apiPing: string) => string;
         },
       ];
     };
-
-    // Gateway Ping - L64
-    gatewayPing: (ping: number) => string;
-
-    // Gateway Ping - L72
-    apiPing: (createdTimestamp: number) => string;
   };
 }
 
@@ -78,101 +74,93 @@ type PingRecord = Record<Locale, PingInterface>;
 const PingCommand: Partial<PingRecord> = {
   // English, US - English, US
   [Locale.EnglishUS]: {
-    // Slash Command Information
+    // Slash - L32
     info: {
       name: 'ping',
       description: "Return with a Pong if it's working!",
       dmPermission: true,
     },
 
-    strings: {
-      // Content - L82
-      content: (userId: string) => `<@${userId}> *Pong! :ping_pong:*`,
+    // Content - L79 | L105
+    content: (userId: string) => `<@${userId}> *Pong! :ping_pong:*`,
 
-      // Main Embed - L54
-      successEmbed: {
-        // Title - L66
+    // Gateway Ping - L84
+    gatewayPing: (ping: number) => `${Math.abs(ping)}ms`,
+
+    // API Ping - L92
+    apiPing: (sentTimestamp: number, createdTimestamp: number) =>
+      `${Math.abs(sentTimestamp - createdTimestamp)}ms`,
+
+    embeds: {
+      // Ping Embed - L59
+      pingEmbed: {
         title: 'Latency',
-        // Color - L67
-        color: resolveColor('Random'),
+        color: 'Random',
 
-        // Footer - L68
         footer: {
           text: (tag: string) => `Command sent by: ${tag}`,
           icon: (avatarURL: string) => avatarURL,
         },
 
         fields: [
-          // Field 01 - L67
           {
             name: ':stopwatch: Gateway Latency',
+            preValue: codeBlock('...ms'),
             value: (gatewayPing: string) => codeBlock(gatewayPing),
           },
-
-          // Field 01 - L75
           {
             name: ':zap: API Latency',
+            preValue: codeBlock('...ms'),
             value: (apiPing: string) => codeBlock(apiPing),
           },
         ],
       },
-
-      // Gateway Ping - L64
-      gatewayPing: (ping: number) => `${Math.round(ping)}ms`,
-
-      // Gateway Ping - L72
-      apiPing: (createdTimestamp: number) =>
-        `${Math.abs(Date.now() - createdTimestamp)}ms`,
     },
   },
 
   // Portuguese, Brazilian - Português do Brasil
   [Locale.PortugueseBR]: {
-    // Slash Command Information
+    // Slash - L32
     info: {
       name: 'latência',
       description: 'Retorno com um pong se estiver funcionando!',
       dmPermission: true,
     },
 
-    strings: {
-      // Content - L82
-      content: (userId: string) => `<@${userId}> *Pong! :ping_pong:*`,
+    // Content - L79 | L105
+    content: (userId: string) => `<@${userId}> *Pong! :ping_pong:*`,
 
-      // Main Embed - L54
-      successEmbed: {
-        // Title - L66
+    // Gateway Ping - L84
+    gatewayPing: (ping: number) => `${Math.abs(ping)}ms`,
+
+    // API Ping - L92
+    apiPing: (sentTimestamp: number, createdTimestamp: number) =>
+      `${Math.abs(sentTimestamp - createdTimestamp)}ms`,
+
+    embeds: {
+      // Ping Embed - L59
+      pingEmbed: {
         title: 'Latência',
-        // Color - L67
-        color: resolveColor('Random'),
+        color: 'Random',
 
-        // Footer - L68
         footer: {
           text: (tag: string) => `Comando enviado por: ${tag}`,
           icon: (avatarURL: string) => avatarURL,
         },
 
         fields: [
-          // Field 01 - L67
           {
             name: ':stopwatch: Latência do Gateway',
+            preValue: codeBlock('...ms'),
             value: (gatewayPing: string) => codeBlock(gatewayPing),
           },
-
-          // Field 01 - L75
           {
             name: ':zap: Latência da API',
+            preValue: codeBlock('...ms'),
             value: (apiPing: string) => codeBlock(apiPing),
           },
         ],
       },
-
-      // Gateway Ping - L64
-      gatewayPing: (ping: number) => `${Math.round(ping)}ms`,
-
-      // Gateway Ping - L72
-      apiPing: (createdTimestamp: number) =>
-        `${Math.abs(Date.now() - createdTimestamp)}ms`,
     },
   },
 };

@@ -27,25 +27,22 @@ import { ButtonStyle, ColorResolvable, Locale } from 'discord.js';
 import { ApplicationCommandOptions, VerifyName, NotEmpty } from 'discordx';
 
 interface QuizInterface {
-  // Slash - L39
+  // Slash - L40
   info: Omit<
     ApplicationCommandOptions<VerifyName<string>, NotEmpty<string>>,
     'nameLocalizations' | 'descriptionLocalizations'
   >;
 
-  // Query's
   query: {
-    // Query 01 - L52
+    // Query 01 - L55
     query01: {
       embeds: {
-        // Question Embed - L58
+        // Question Embed - L61
         questionEmbed: {
-          // Info - L59
           title: string;
           description: string;
           color: ColorResolvable;
 
-          // Footer - L62
           footer: {
             text: (tag: string) => string;
             icon: (avatarURL: string) => string;
@@ -54,14 +51,14 @@ interface QuizInterface {
       };
 
       buttons: {
-        // Yes Button - L68
+        // Yes Button - L73
         yesButton: {
           label: string;
           customId: string;
           style: ButtonStyle;
         };
 
-        // No Button - L73
+        // No Button - L80
         noButton: {
           label: string;
           customId: string;
@@ -70,17 +67,15 @@ interface QuizInterface {
       };
     };
 
-    // Query 02 - L93 | L130
+    // Query 02 - L100 | L148
     query02: {
       embeds: {
-        // Question Embed - L96 | L133
+        // Question Embed - L108 | L156
         questionEmbed: {
-          // Info - L97 | L134
           title: string;
           description: string;
           color: ColorResolvable;
 
-          // Footer - L100 | L137
           footer: {
             text: (tag: string) => string;
             icon: (avatarURL: string) => string;
@@ -89,14 +84,14 @@ interface QuizInterface {
       };
 
       buttons: {
-        // Yes Button - L106 | L143
+        // Yes Button - L122 | L170
         yesButton: {
           label: string;
           customId: string;
           style: ButtonStyle;
         };
 
-        // Yes Button - L111 | L148
+        // No Button - L129 | L177
         noButton: {
           label: string;
           customId: string;
@@ -105,16 +100,15 @@ interface QuizInterface {
       };
     };
 
-    // Finalize - L184
+    // Finalize - L211
     finalize: {
       embeds: {
-        // Final Embed - L185
+        // Final Embed - L217
         finalEmbed: {
           title: string;
           description: string;
           color: ColorResolvable;
 
-          // Footer - L189
           footer: {
             text: (tag: string) => string;
             icon: (avatarURL: string) => string;
@@ -137,19 +131,16 @@ const QuizCommand: Partial<QuizRecord> = {
       dmPermission: true,
     },
 
-    // Query's
     query: {
-      // Query 01 - L52
+      // Query 01 - L55
       query01: {
         embeds: {
-          // Question Embed - L58
+          // Question Embed - L61
           questionEmbed: {
-            // Info - L59
             title: 'Question 01',
             description: 'Do you like bread with cheese?',
             color: 'Random',
 
-            // Footer - L62
             footer: {
               text: (tag: string) => `Command sent by: ${tag}`,
               icon: (avatarURL: string) => avatarURL,
@@ -158,14 +149,15 @@ const QuizCommand: Partial<QuizRecord> = {
         },
 
         buttons: {
-          // Yes Button - L68
+          // Yes Button - L73
           yesButton: {
             label: 'Yes!',
+
             customId: 'Query01_Response01',
             style: ButtonStyle.Success,
           },
 
-          // No Button - L73
+          // No Button - L80
           noButton: {
             label: 'No!',
             customId: 'Query01_Response02',
@@ -174,16 +166,15 @@ const QuizCommand: Partial<QuizRecord> = {
         },
       },
 
-      // Query 02 - L93 | L130
+      // Query 02 - L100 | L148
       query02: {
         embeds: {
-          // Question Embed - L96 | L133
+          // Question Embed - L108 | L156
           questionEmbed: {
             title: 'Question 02',
             description: 'Do you like bread with egg?',
             color: 'Random',
 
-            // Footer - L100 | L137
             footer: {
               text: (tag: string) => `Command sent by: ${tag}`,
               icon: (avatarURL: string) => avatarURL,
@@ -192,14 +183,14 @@ const QuizCommand: Partial<QuizRecord> = {
         },
 
         buttons: {
-          // Yes Button - L106 | L143
+          // Yes Button - L122 | L170
           yesButton: {
             label: 'Yes!',
             customId: 'Query02_Response01',
             style: ButtonStyle.Success,
           },
 
-          // Yes Button - L111 | L148
+          // No Button - L129 | L177
           noButton: {
             label: 'No!',
             customId: 'Query02_Response02',
@@ -208,10 +199,10 @@ const QuizCommand: Partial<QuizRecord> = {
         },
       },
 
-      // Finalize - L184
+      // Finalize - L211
       finalize: {
         embeds: {
-          // Final Embed - L185
+          // Final Embed - L217
           finalEmbed: {
             title: 'Finalized',
             description: 'Thanks for participating!',
@@ -233,23 +224,20 @@ const QuizCommand: Partial<QuizRecord> = {
     // Slash - L39
     info: {
       name: 'questionário',
-      description: 'Faça um questionário!',
+      description: 'Faça um Questionário!',
       dmPermission: true,
     },
 
-    // Query's
     query: {
-      // Query 01 - L52
+      // Query 01 - L55
       query01: {
         embeds: {
-          // Question Embed - L58
+          // Question Embed - L61
           questionEmbed: {
-            // Info - L59
             title: 'Pergunta 01',
             description: 'Você gosta de pão com queijo?',
             color: 'Random',
 
-            // Footer - L62
             footer: {
               text: (tag: string) => `Comando enviado por: ${tag}`,
               icon: (avatarURL: string) => avatarURL,
@@ -258,14 +246,14 @@ const QuizCommand: Partial<QuizRecord> = {
         },
 
         buttons: {
-          // Yes Button - L68
+          // Yes Button - L73
           yesButton: {
             label: 'Sim!',
             customId: 'Query01_Response01',
             style: ButtonStyle.Success,
           },
 
-          // No Button - L73
+          // No Button - L80
           noButton: {
             label: 'Não!',
             customId: 'Query01_Response02',
@@ -274,16 +262,15 @@ const QuizCommand: Partial<QuizRecord> = {
         },
       },
 
-      // Query 02 - L93 | L130
+      // Query 02 - L100 | L148
       query02: {
         embeds: {
-          // Question Embed - L96 | L133
+          // Question Embed - L108 | L156
           questionEmbed: {
             title: 'Pergunta 02',
             description: 'Você gosta de pão com ovo?',
             color: 'Random',
 
-            // Footer - L100 | L137
             footer: {
               text: (tag: string) => `Comando enviado por: ${tag}`,
               icon: (avatarURL: string) => avatarURL,
@@ -292,14 +279,14 @@ const QuizCommand: Partial<QuizRecord> = {
         },
 
         buttons: {
-          // Yes Button - L106 | L143
+          // Yes Button - L122 | L170
           yesButton: {
             label: 'Sim!',
             customId: 'Query02_Response01',
             style: ButtonStyle.Success,
           },
 
-          // Yes Button - L111 | L148
+          // No Button - L129 | L177
           noButton: {
             label: 'Não!',
             customId: 'Query02_Response02',
@@ -308,18 +295,18 @@ const QuizCommand: Partial<QuizRecord> = {
         },
       },
 
-      // Finalize - L184
+      // Finalize - L211
       finalize: {
         embeds: {
-          // Final Embed - L185
+          // Final Embed - L217
           finalEmbed: {
             title: 'Finalizado',
-            description: 'Obrigado por participar!',
+            description: 'Obrigado por Participar!',
             color: 'Random',
 
             // Footer - L189
             footer: {
-              text: (tag: string) => `Comando enviador por: ${tag}`,
+              text: (tag: string) => `Comando enviado por: ${tag}`,
               icon: (avatarURL: string) => avatarURL,
             },
           },
