@@ -23,8 +23,5 @@
  *  SOFTWARE.
  */
 
-export * from './expo';
 export * from './general';
 export * from './minecraft';
-export * from './owner';
-export * from './twitch';

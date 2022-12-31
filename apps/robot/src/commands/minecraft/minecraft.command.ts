@@ -35,7 +35,6 @@ import { Locale } from 'discord.js';
   dmPermission: MinecraftLang().info.dmPermission,
 
   // Name localization
-  // Description localization
   nameLocalizations: {
     'pt-BR': MinecraftLang(Locale.PortugueseBR).info.name,
     'en-US': MinecraftLang(Locale.EnglishUS).info.name,
