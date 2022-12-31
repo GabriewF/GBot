@@ -23,9 +23,6 @@
  *  SOFTWARE.
  */
 
-import { pino } from '@gbot/logging';
-pino.info('Foi?');
-
 import { NestFactory } from '@nestjs/core';
 import {
   ExpressAdapter,

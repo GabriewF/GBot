@@ -23,7 +23,7 @@
  *  SOFTWARE.
  */
 
-export * from './discord.js';
+export * from './discord';
 export * from './shortcut';
 export * from './twitch';
 export * from './user';

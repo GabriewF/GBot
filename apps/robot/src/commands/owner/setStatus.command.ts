@@ -138,7 +138,6 @@ export abstract class SetStatus {
       .setTimestamp();
 
     await command.editReply({
-      content: `<@${command.user.id}>`,
       embeds: [embed],
     });
 

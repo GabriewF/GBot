@@ -24,7 +24,6 @@
  */
 
 import { pino } from '@gbot/logging';
-import { OAuth2Scopes } from 'discord.js';
 import { ArgsOf, Client, Discord, Once } from 'discordx';
 
 @Discord()
@@ -32,21 +31,6 @@ export abstract class Ready {
   @Once({ event: 'ready' })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async Handle([_]: ArgsOf<'ready'>, client: Client) {
-    // Generate invite
-    const invite = client.generateInvite({
-      // Scopes of the Invite
-      scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
-
-      // Permissions of the Invite
-      permissions: [
-        'Administrator',
-        'ManageChannels',
-        'ManageGuild',
-        'ManageMessages',
-        'SendMessages',
-      ],
-    });
-
     // Make sure all guilds are cached
     pino.warn('Synchronizing guilds...');
 
@@ -93,6 +77,5 @@ export abstract class Ready {
 
     // When connected
     pino.info(`Connected to the gateway as ${client.user?.tag}`);
-    pino.info(`Gateway user bot invite: ${invite}`);
   }
 }

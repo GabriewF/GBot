@@ -34,71 +34,63 @@ import { Client } from 'discordx';
 // import { dirname } from 'node:path';
 import { loadGlobal } from '@gbot/environment';
 
-export class Main {
-  private static client: Client;
+loadGlobal();
 
-  static get Client(): Client {
-    return this.client;
-  }
+export const client = new Client({
+  // To use only guild command
+  // botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)],
 
-  static async start(): Promise<void> {
-    loadGlobal();
+  // Discord intents
+  intents: [
+    IntentsBitField.Flags.Guilds,
+    IntentsBitField.Flags.GuildMembers,
+    IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.DirectMessages,
+    IntentsBitField.Flags.MessageContent,
+  ],
 
-    this.client = new Client({
-      // To use only guild command
-      // botGuilds: [(client) => client.guilds.cache.map((guild) => guild.id)],
+  // Discord partials
+  partials: [
+    Partials.User,
+    Partials.Channel,
+    Partials.Message,
+    Partials.Reaction,
+    Partials.GuildMember,
+    Partials.ThreadMember,
+  ],
 
-      // Discord intents
-      intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildMembers,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.DirectMessages,
-        IntentsBitField.Flags.MessageContent,
-      ],
-
-      // Discord partials
-      partials: [
-        Partials.User,
-        Partials.Channel,
-        Partials.Message,
-        Partials.Reaction,
-        Partials.GuildMember,
-        Partials.ThreadMember,
-      ],
-
-      // Set bot presence
-      presence: {
-        activities: [
-          {
-            name: 'Utilize FOI?!',
-            type: ActivityType.Listening,
-          },
-        ],
-        afk: false,
-        status: 'idle',
+  // Set bot presence
+  presence: {
+    activities: [
+      {
+        name: 'Utilize FOI?!',
+        type: ActivityType.Listening,
       },
+    ],
+    afk: false,
+    status: 'idle',
+  },
 
-      // Other
-      closeTimeout: 10,
-      failIfNotExists: true,
-      silent: true,
-    });
+  // Other
+  closeTimeout: 10,
+  failIfNotExists: true,
+  silent: true,
+});
 
-    await import('./aggregator');
+const start = async () => {
+  await import('./aggregator.js');
 
-    // Let's start the bot
-    if (!process.env['DISCORD_TOKEN']) {
-      throw Error('Could not find DISCORD_TOKEN in your environment');
-    }
-
-    // Log in with your bot token
-    pino.warn('Connecting to the gateway...');
-    await this.client.login(String(process.env['DISCORD_TOKEN']));
+  // Let's start the bot
+  if (!process.env['DISCORD_TOKEN']) {
+    throw Error('Could not find DISCORD_TOKEN in your environment');
   }
-}
+
+  // Log in with your bot token
+  pino.warn('Connecting to the gateway...');
+  await client.login(String(process.env['DISCORD_TOKEN']));
+};
 
 process.on('uncaughtException', (err) => pino.error(err));
 process.on('unhandledRejection', (err) => pino.error(err));
 
-Main.start();
+start();

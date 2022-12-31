@@ -8,17 +8,17 @@
 
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "source": "src/index.ts",
 
   "scripts": {
     "lint": "eslint --fix",
-    "build": "heft build"
+    "build": "tsc -b"
   },
 
   "author": "GabriewF <feegasaa@gmail.com>",
   "license": "MIT",
 
   "devDependencies": {
-    "@rushstack/heft": "^0.49.0",
     "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
@@ -34,7 +34,6 @@
     "@gbot/logging": "workspace:*",
     "dotenv": "^16.0.3",
     "pg": "^8.8.0",
-    "pg-native": "^3.0.1",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.4.1",
     "typeorm": "^0.3.11"

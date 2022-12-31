@@ -23,6 +23,6 @@
  *  SOFTWARE.
  */
 
-export * from './calc.command';
-export * from './ping.command';
-export * from './quiz.command';
+export * from './calc';
+export * from './ping';
+export * from './quiz';

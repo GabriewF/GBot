@@ -87,7 +87,6 @@ export abstract class SetBio {
         .setTimestamp();
 
       await command.editReply({
-        content: `<@${command.user.id}>`,
         embeds: [embed],
       });
 
@@ -107,7 +106,6 @@ export abstract class SetBio {
       .setTimestamp();
 
     await command.editReply({
-      content: `<@${command.user.id}>`,
       embeds: [embed],
     });
 

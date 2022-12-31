@@ -142,7 +142,6 @@ export abstract class Calc {
         .setTimestamp();
 
       await command.editReply({
-        content: loc.content(command.user.id),
         embeds: [failEmbed],
       });
 
@@ -157,7 +156,6 @@ export abstract class Calc {
 
     // Return the embed
     await command.editReply({
-      content: loc.content(command.user.id),
       embeds: [successEmbed],
     });
 

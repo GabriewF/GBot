@@ -116,7 +116,6 @@ export abstract class RegionalDifficulty {
 
     // Ping Command
     await command.editReply({
-      content: loc.content(command.user.id),
       embeds: [successEmbed],
     });
 

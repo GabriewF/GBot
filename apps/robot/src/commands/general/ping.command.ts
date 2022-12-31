@@ -65,16 +65,17 @@ export abstract class Ping {
         {
           name: pingEmbedLoc.fields[0].name,
           value: pingEmbedLoc.fields[0].preValue,
+          inline: pingEmbedLoc.fields[0].inline,
         },
         {
           name: pingEmbedLoc.fields[1].name,
           value: pingEmbedLoc.fields[1].preValue,
+          inline: pingEmbedLoc.fields[1].inline,
         },
       ])
       .setTimestamp();
 
     const sent = await command.editReply({
-      content: loc.content(command.user.id),
       embeds: [pingEmbed],
     });
 
@@ -85,6 +86,7 @@ export abstract class Ping {
     pingEmbed.spliceFields(0, 1, {
       name: pingEmbedLoc.fields[0].name,
       value: pingEmbedLoc.fields[0].value(gatewayPing),
+      inline: pingEmbedLoc.fields[0].inline,
     });
 
     const apiPing = loc.apiPing(
@@ -96,11 +98,11 @@ export abstract class Ping {
     pingEmbed.spliceFields(1, 1, {
       name: pingEmbedLoc.fields[1].name,
       value: pingEmbedLoc.fields[1].value(apiPing),
+      inline: pingEmbedLoc.fields[1].inline,
     });
 
     // Return the embed
     await command.editReply({
-      content: loc.content(command.user.id),
       embeds: [pingEmbed],
     });
 
