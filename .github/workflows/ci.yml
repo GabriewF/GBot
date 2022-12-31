@@ -24,6 +24,12 @@ jobs:
           git config --global user.email "no-reply@github.com"
           git config --local user.name "GitHub Actions"
 
+      - name: ⬇️ Install pNPM
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+
       # Setup Node
       - name: 🔁 Setup Node
         uses: actions/setup-node@v3
@@ -32,11 +38,11 @@ jobs:
           cache: 'pnpm'
       
       # Pnpm Install
-      - name: ⬇️ Install
-        run: pnpm install
+      - name: ⬇️ pNPM Install
+        run: pnpm install --frozen-lockfile
 
       # Lint Project
-      - name: 📦 Build
+      - name: 📦 pNPM Build
         run: pnpm run build
   
   lint:
@@ -56,6 +62,12 @@ jobs:
           git config --global user.email "no-reply@github.com"
           git config --local user.name "GitHub Actions"
 
+      - name: ⬇️ Install pNPM
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+
       # Setup Node
       - name: 🔁 Setup Node
         uses: actions/setup-node@v3
@@ -64,9 +76,9 @@ jobs:
           cache: 'pnpm'
       
       # Pnpm Install
-      - name: ⬇️ Install
-        run: pnpm install
+      - name: ⬇️ pNPM Install
+        run: pnpm install --frozen-lockfile
       
       # Lint Project
-      - name: ✏️ Lint
+      - name: ✏️ pNPM Lint
         run: pnpm run lint
