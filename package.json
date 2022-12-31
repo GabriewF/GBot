@@ -1,0 +1,17 @@
+{
+  "name": "gbot",
+  "version": "0.1.5",
+  "private": true,
+  "packageManager": "pnpm@7.20.0",
+  "scripts": {
+    "prod": "turbo run prod",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint"
+  },
+  "author": "GabriewF <feegasaa@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^1.6.3"
+  }
+}
