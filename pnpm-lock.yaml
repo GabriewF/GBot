@@ -94,7 +94,7 @@ importers:
       ts-node-dev: ^2.0.0
       tslib: ^2.4.1
       typescript: ^4.9.4
-      utf-8-validate: ^5.0.10
+      utf-8-validate: ^6.0.0
       zlib-sync: ^0.1.7
     dependencies:
       '@discordx/importer': 1.1.10
@@ -103,7 +103,7 @@ importers:
       '@gbot/helpers': link:../../tools/helpers
       '@gbot/logging': link:../../tools/logging
       '@gbot/meta': link:../../tools/meta
-      discord.js: 14.7.1_3cxu5zja4e2r5wmvge7mdcljwq
+      discord.js: 14.7.1_b534fhs3xgzvdbz5qzlfkrhjjm
       discordx: 11.5.2_discord.js@14.7.1
       dotenv: 16.0.3
       mathjs: 11.5.0
@@ -111,7 +111,7 @@ importers:
     optionalDependencies:
       bufferutil: 4.0.7
       erlpack: github.com/discord/erlpack/cbe76be04c2210fc9cb6ff95910f0937c1011d04
-      utf-8-validate: 5.0.10
+      utf-8-validate: 6.0.0
       zlib-sync: 0.1.7
     devDependencies:
       '@types/node': 18.11.18
@@ -2058,7 +2058,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /discord.js/14.7.1_3cxu5zja4e2r5wmvge7mdcljwq:
+  /discord.js/14.7.1_b534fhs3xgzvdbz5qzlfkrhjjm:
     resolution: {integrity: sha512-1FECvqJJjjeYcjSm0IGMnPxLqja/pmG1B0W2l3lUY2Gi4KXiyTeQmU1IxWcbXHn2k+ytP587mMWqva2IA87EbA==}
     engines: {node: '>=16.9.0'}
     dependencies:
@@ -2073,7 +2073,7 @@ packages:
       lodash.snakecase: 4.1.1
       tslib: 2.4.1
       undici: 5.14.0
-      ws: 8.11.0_3cxu5zja4e2r5wmvge7mdcljwq
+      ws: 8.11.0_b534fhs3xgzvdbz5qzlfkrhjjm
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -2087,7 +2087,7 @@ packages:
     dependencies:
       '@discordx/di': 3.0.2
       '@discordx/internal': 1.0.2
-      discord.js: 14.7.1_3cxu5zja4e2r5wmvge7mdcljwq
+      discord.js: 14.7.1_b534fhs3xgzvdbz5qzlfkrhjjm
       lodash: 4.17.21
       tslib: 2.4.1
     dev: false
@@ -4860,8 +4860,8 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /utf-8-validate/5.0.10:
-    resolution: {integrity: sha512-Z6czzLq4u8fPOyx7TU6X3dvUZVvoJmxSQ+IcrlmagKhilxlhZgxPK6C5Jqbkw1IDUmFTM+cz9QDnnLTwDz/2gQ==}
+  /utf-8-validate/6.0.0:
+    resolution: {integrity: sha512-OCJuwxQsnG51swYmNloViggxNOFO/leOZpnb/vVeoastJbrzrZZU7lGsYlUcdkCl9nsBu2nkKLjpljb3Ckvb/Q==}
     engines: {node: '>=6.14.2'}
     requiresBuild: true
     dependencies:
@@ -5018,7 +5018,7 @@ packages:
         optional: true
     dev: false
 
-  /ws/8.11.0_3cxu5zja4e2r5wmvge7mdcljwq:
+  /ws/8.11.0_b534fhs3xgzvdbz5qzlfkrhjjm:
     resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -5031,7 +5031,7 @@ packages:
         optional: true
     dependencies:
       bufferutil: 4.0.7
-      utf-8-validate: 5.0.10
+      utf-8-validate: 6.0.0
     dev: false
 
   /xml2js/0.4.23:
