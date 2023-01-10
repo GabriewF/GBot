@@ -5,6 +5,7 @@ on:
     branches: ["trunk"]
   pull_request:
     types: [opened, synchronize]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,7 +15,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        node: [lts]
+        node: [lts/*]
         pnpm: [latest]
 
     runs-on: ${{ matrix.os }}
