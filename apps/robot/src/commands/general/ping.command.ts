@@ -53,6 +53,9 @@ export abstract class Ping {
     const loc = PingLang(command.locale);
     const pingEmbedLoc = loc.embeds.pingEmbed;
 
+    command.channel?.awaitMessages
+
+
     // Embed of the message
     const pingEmbed = new EmbedBuilder()
       .setTitle(pingEmbedLoc.title)
@@ -61,6 +64,7 @@ export abstract class Ping {
         text: pingEmbedLoc.footer.text(command.user.tag),
         iconURL: pingEmbedLoc.footer.icon(String(command.user.avatarURL())),
       })
+
       .setFields([
         {
           name: pingEmbedLoc.fields[0].name,
