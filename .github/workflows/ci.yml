@@ -60,9 +60,9 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ ubuntu-latest ]
-        node: [ lts ]
-        pnpm: [ latest ]
+        os: [ubuntu-latest]
+        node: [lts/*]
+        pnpm: [latest]
 
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
