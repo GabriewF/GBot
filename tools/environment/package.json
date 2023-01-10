@@ -4,7 +4,7 @@
   "type": "commonjs",
   "private": true,
 
-  "packageManager": "pnpm@7.22.0",
+  "packageManager": "pnpm@7.24.2",
 
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
