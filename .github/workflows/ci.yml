@@ -9,10 +9,18 @@ on:
 jobs:
   build:
     name: 📦 Build
-    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest]
+        node: [lts]
+        pnpm: [latest]
+
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 15
-    
     if: "!contains(github.event.commits[0].message, '[ci-skip]')"
+
     steps:
       # Checkout
       - name: 📀 Git Checkout
@@ -28,13 +36,13 @@ jobs:
         uses: pnpm/action-setup@v2
         id: pnpm-install
         with:
-          version: 7
+          version: ${{ matrix.pnpm }}
 
       # Setup Node
       - name: 🔁 Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: ${{ matrix.node }}
           cache: 'pnpm'
       
       # Pnpm Install
@@ -47,10 +55,18 @@ jobs:
   
   lint:
     name: ✏️ Lint
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
 
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ lts ]
+        pnpm: [ latest ]
+
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     if: "!contains(github.event.commits[0].message, '[ci-skip]')"
+
     steps:
       # Checkout
       - name: 📀 Git Checkout
@@ -66,13 +82,13 @@ jobs:
         uses: pnpm/action-setup@v2
         id: pnpm-install
         with:
-          version: 7
+          version: ${{ matrix.pnpm }}
 
       # Setup Node
       - name: 🔁 Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: ${{ matrix.node }}
           cache: 'pnpm'
       
       # Pnpm Install
