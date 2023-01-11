@@ -4,7 +4,7 @@
   "type": "commonjs",
   "private": true,
 
-  "packageManager": "pnpm@7.24.2",
+  "packageManager": "pnpm@7.24.3",
 
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
