@@ -71,9 +71,9 @@ export abstract class Ready {
     // This is useful when moving from guild commands to global commands
     // It must only be executed once
 
-    //  await bot.clearApplicationCommands(
-    //    ...bot.guilds.cache.map((g) => g.id)
-    //  ),
+    // await client.clearApplicationCommands(
+    //   ...client.guilds.cache.map((g) => g.id),
+    // );
 
     // When connected
     pino.info(`Connected to the gateway as ${client.user?.tag}`);

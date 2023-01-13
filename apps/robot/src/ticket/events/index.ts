@@ -23,4 +23,4 @@
  *  SOFTWARE.
  */
 
-export * from './threadLocked.event';
+export {};

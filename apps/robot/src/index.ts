@@ -78,7 +78,9 @@ export const client = new Client({
 });
 
 const start = async () => {
-  await import('./aggregator.js');
+  await import('./aggregator');
+
+  // só tirar .js do aggregator
 
   // Let's start the bot
   if (!process.env['DISCORD_TOKEN']) {
