@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@gbot/database": "workspace:*",
-    "@twurple/api": "^5.3.1",
+    "@twurple/api": "^6.0.0",
     "@twurple/auth": "^5.3.1",
     "@twurple/eventsub": "^5.3.1",
     "@twurple/eventsub-ngrok": "^5.3.1",
