@@ -19,7 +19,7 @@ importers:
       '@nestjs/core': ^9.2.1
       '@nestjs/platform-express': ^9.2.1
       '@nestjs/schematics': ^9.0.4
-      '@nestjs/serve-static': ^3.0.0
+      '@nestjs/serve-static': ^4.0.0
       '@nestjs/typeorm': ^9.0.1
       '@types/express': ^4.17.15
       '@types/node': ^18.11.18
@@ -46,7 +46,7 @@ importers:
       '@nestjs/common': 9.2.1_mnr6j2del53muneqly5h4y27ai
       '@nestjs/core': 9.2.1_e6la6qvsclaae2becwjnmfvsuq
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
-      '@nestjs/serve-static': 3.0.0_hjcqpoaebdr7gdo5hgc22hthbe
+      '@nestjs/serve-static': 4.0.0_qikytf43s3xf2srsqp64tugdzm
       dotenv: 16.0.3
       express: 4.18.2
       reflect-metadata: 0.1.13
@@ -762,14 +762,25 @@ packages:
       - chokidar
     dev: true
 
-  /@nestjs/serve-static/3.0.0_hjcqpoaebdr7gdo5hgc22hthbe:
-    resolution: {integrity: sha512-TpXjgs4136dQqWUjEcONqppqXDsrJhRkmKWzuBMOUAnP4HjHpNmlycvkHnDnWSoG2YD4a7Enh4ViYGWqCfHStA==, tarball: https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-3.0.0.tgz}
+  /@nestjs/serve-static/4.0.0_qikytf43s3xf2srsqp64tugdzm:
+    resolution: {integrity: sha512-8cTrNV2ngdHIjiLNsXePnw0+KY1ThrZGz/WeyAG5gIvmZNDbnZBOrPoYlKL+MOzlXlQStxR5jKLYmn+nJeoncQ==, tarball: https://registry.npmjs.org/@nestjs/serve-static/-/serve-static-4.0.0.tgz}
     peerDependencies:
-      '@nestjs/common': ^9.0.0
-      '@nestjs/core': ^9.0.0
+      '@fastify/static': ^6.5.0
+      '@nestjs/common': ^9.0.0 || ^10.0.0
+      '@nestjs/core': ^9.0.0 || ^10.0.0
+      express: ^4.18.1
+      fastify: ^4.7.0
+    peerDependenciesMeta:
+      '@fastify/static':
+        optional: true
+      express:
+        optional: true
+      fastify:
+        optional: true
     dependencies:
       '@nestjs/common': 9.2.1_mnr6j2del53muneqly5h4y27ai
       '@nestjs/core': 9.2.1_e6la6qvsclaae2becwjnmfvsuq
+      express: 4.18.2
       path-to-regexp: 0.2.5
     dev: false
 
@@ -986,7 +997,7 @@ packages:
     dev: false
 
   /@types/body-parser/1.19.2:
-    resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
+    resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==, tarball: https://registry.npmjs.org/@types/body-parser/-/body-parser-1.19.2.tgz}
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 18.11.18
@@ -1002,7 +1013,7 @@ packages:
     dev: false
 
   /@types/connect/3.4.35:
-    resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
+    resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==, tarball: https://registry.npmjs.org/@types/connect/-/connect-3.4.35.tgz}
     dependencies:
       '@types/node': 18.11.18
     dev: true
@@ -1056,7 +1067,7 @@ packages:
     dev: false
 
   /@types/mime/3.0.1:
-    resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
+    resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==, tarball: https://registry.npmjs.org/@types/mime/-/mime-3.0.1.tgz}
     dev: true
 
   /@types/node-fetch/2.6.2:
@@ -1102,7 +1113,7 @@ packages:
     dev: true
 
   /@types/serve-static/1.15.0:
-    resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
+    resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==, tarball: https://registry.npmjs.org/@types/serve-static/-/serve-static-1.15.0.tgz}
     dependencies:
       '@types/mime': 3.0.1
       '@types/node': 18.11.18
@@ -3756,7 +3767,7 @@ packages:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==, tarball: https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz}
 
   /path-to-regexp/0.2.5:
-    resolution: {integrity: sha512-l6qtdDPIkmAmzEO6egquYDfqQGPMRNGjYtrU13HAXb3YSRrt7HSb1sJY0pKp6o2bAa86tSB6iwaW2JbthPKr7Q==, tarball: https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.2.5.tgz}
+    resolution: {integrity: sha512-l6qtdDPIkmAmzEO6egquYDfqQGPMRNGjYtrU13HAXb3YSRrt7HSb1sJY0pKp6o2bAa86tSB6iwaW2JbthPKr7Q==, tarball: https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.2.5.tgz}
     dev: false
 
   /path-to-regexp/3.2.0:
@@ -5283,6 +5294,7 @@ packages:
     optional: true
 
 time:
+  /@nestjs/serve-static/4.0.0: '2023-06-15T11:25:07.640Z'
   /bufferutil/4.0.7: '2022-10-18T13:38:10.830Z'
   /utf-8-validate/6.0.0: '2023-01-04T20:50:39.970Z'
   /zlib-sync/0.1.7: '2020-06-10T08:06:00.411Z'
