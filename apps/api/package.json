@@ -3,7 +3,7 @@
   "version": "0.1.6",
   "type": "commonjs",
   "private": true,
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@8.6.5",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "source": "src/main.ts",

@@ -2,7 +2,7 @@
   "name": "gbot",
   "version": "0.1.6",
   "private": true,
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@8.6.5",
   "scripts": {
     "prod": "turbo run prod",
     "dev": "turbo run dev",
