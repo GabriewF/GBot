@@ -1,4 +1,6 @@
-# GBot - Monorepo
+# Notice: THIS REPOSITORY IS ARCHIVED FOR HISTORICAL PURPOSES
+
+## GBot - Monorepo
 
 This is the Monorepo of GBot project!
 
